@@ -1,8 +1,6 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-# I've decided maybe autocorrection IS maybe more trouble than worth...
-unsetopt correct_all
 
 # Theme to load - Look in ~/.oh-my-zsh/themes/ or set to "random"
 ZSH_THEME="duellj"
@@ -12,6 +10,7 @@ DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
+
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -25,13 +24,21 @@ export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/
 source $ZSH/oh-my-zsh.sh
 
 
+# I've decided maybe autocorrection IS maybe more trouble than worth...
+unsetopt correct_all
+
+
+# Ocaml dev settings
+OCAMLRUNPARAM=b
+
+
 # Load rvm if present
 [[ -s "/home/$USER/.rvm/scripts/rvm" ]] && source "/home/$USER/.rvm/scripts/rvm" 
 
 
 # Archeopterix helper
 aptx() {
-  java -jar ~/bin/forester.jar -c ~/bin/_aptx_configuration_file $1
+  java -jar ~/bin/forester.jar -c ~/.aptxrc $1
 }
 
 # Reload X tunells if in tmux
@@ -119,13 +126,6 @@ forgitadd () {
 
 
 alias stderrxc='2>&1 > /dev/null | xc'
-
-# Damn tmux hacking my session names...
-DISABLE_AUTO_TITLE=true
-
-
-# Ocaml dev settings
-OCAMLRUNPARAM=b
 
 
 # From mr bates

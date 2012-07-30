@@ -16,7 +16,7 @@ task :install do
       elsif replace_all
         replace_file(file)
       else
-        print "overwrite ~/.#{file.sub(/\.erb$/, '')}? [ynaq] "
+        print "overwrite #{dotted_filename(file, true)}? [ynaq] "
         case $stdin.gets.chomp
         when 'a'
           replace_all = true
@@ -26,7 +26,7 @@ task :install do
         when 'q'
           exit
         else
-          puts "skipping ~/.#{file.sub(/\.erb$/, '')}"
+          puts "skipping #{dotted_filename(file, true)}"
         end
       end
     else
@@ -47,12 +47,23 @@ task :backup do
 end
 
 
-def dotted_filename(undotted_name)
-  File.join(ENV['HOME'], ".#{undotted_name.sub(/\.erb$/, '')}")
+def dotted_filename(undotted_name, pp=false)
+  unerbed = undotted_name.sub(/\.erb$/, '')
+  if undotted_name.match /bin\/.?/
+    base = unerbed
+  else
+    base = ".#{unerbed}"
+  end
+  if pp
+    File.join('~', base)
+  else
+    File.join(ENV['HOME'], base)
+  end
 end
 
 def dotfiles
-  files = Dir['*'] - %w[Rakefile README.md LICENSE oh-my-zsh janus backups]
+  files = Dir['*'] - %w[Rakefile README.md LICENSE oh-my-zsh janus backups bin]
+  files += Dir['bin/*']
   files << "oh-my-zsh/custom/plugins/rbates"
   files << "oh-my-zsh/custom/rbates.zsh-theme"
   files << "janus/rbates"
@@ -60,25 +71,25 @@ def dotfiles
 end
 
 def replace_file(file)
-  system %Q{rm -rf "$HOME/.#{file.sub(/\.erb$/, '')}"}
+  system %Q{rm -rf "#{dotted_filename(file)}"}
   link_file(file)
 end
 
 def link_file(file)
   if file =~ /.erb$/
     puts "generating ~/.#{file.sub(/\.erb$/, '')}"
-    File.open(File.join(ENV['HOME'], ".#{file.sub(/\.erb$/, '')}"), 'w') do |new_file|
+    File.open(dotted_filename(file), 'w') do |new_file|
       new_file.write ERB.new(File.read(file)).result(binding)
     end
   else
     puts "linking ~/.#{file}"
-    system %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
+    system %Q{ln -s "$PWD/#{file}" "#{dotted_filename(file)}"}
   end
 end
 
 def switch_to_zsh
   if ENV["SHELL"] =~ /zsh/
-    puts "using zsh"
+    puts "Already using zsh"
   else
     print "switch to zsh? (recommended) [ynq] "
     case $stdin.gets.chomp
@@ -95,7 +106,7 @@ end
 
 def install_oh_my_zsh
   if File.exist?(File.join(ENV['HOME'], ".oh-my-zsh"))
-    puts "found ~/.oh-my-zsh"
+    puts "Already using oh-my-zsh"
   else
     print "install oh-my-zsh? [ynq] "
     case $stdin.gets.chomp
@@ -112,6 +123,9 @@ end
 
 def install_janus
   if File.exists?(File.join(ENV['HOME'], '.vim/janus'))
+    puts "Already using janus"
+  else
+    puts "installing janus"
     system "curl -Lo- https://bit.ly/janus-bootstrap | bash"
   end
 end
