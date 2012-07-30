@@ -19,7 +19,7 @@ plugins=()
 
 # Main path list. Can be added to with ~/.zshrc.local
 export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin
-[[ -s .zshrc.local ]] && source .zshrc.local
+[[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 # Load oh my zsh
 source $ZSH/oh-my-zsh.sh
 
