@@ -37,7 +37,7 @@ end
 
 desc "backup all dot files"
 task :backup do
-  bkp_dir = "backups/backup_#{Time.now.strftime('%Y-%m-d_%H-%M.%L')}"
+  bkp_dir = "backups/backup_#{Time.now.strftime('%Y-%m-%d_%H-%M.%S')}"
   puts "Backing up dotfiles to "
   system %Q{mkdir -p "#{bkp_dir}"}
   dotfiles.map {|f| dotted_filename(f)}.each do |file|
