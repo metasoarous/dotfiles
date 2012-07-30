@@ -1,30 +1,44 @@
-# Ryan Bates Dot Files
 
-These are config files to set up a system the way I like it. It now uses [Oh My ZSH](https://github.com/robbyrussell/oh-my-zsh). If you would like to see my old, custom Bash and ZSH config, check out [this branch](https://github.com/ryanb/dotfiles/tree/custom-bash-zsh)
+# Chris Small Dot Files
 
-I am running on Mac OS X, but it will likely work on Linux as well.
+These are config files for setting up a system the way I like it. It is
+based on the Ryan Bates Dot Files repository.
 
+## Opinions/Features
+
+* zsh and oh-my-zsh
+* vim with janus
+* tmux FTW
+* Linux (but will probably mostly work with OS X just fine)
 
 ## Installation
 
-Run the following commands in your terminal. It will prompt you before it does anything destructive. Check out the [Rakefile](https://github.com/ryanb/dotfiles/blob/custom-bash-zsh/Rakefile) to see exactly what it does.
+Run the following commands in your terminal. It will prompt you before it does anything destructive. Check out the [Rakefile](https://github.com/metasoarous/dotfiles/blob/custom-bash-zsh/Rakefile) to see exactly what it does.
 
 ```terminal
 git clone git://github.com/ryanb/dotfiles ~/.dotfiles
 cd ~/.dotfiles
+# If you want to backup your existing config files before getting in too
+# deep...
+rake backup
+# then jump in
 rake install
 ```
 
 After installing, open a new terminal window to see the effects.
 
-Feel free to customize the .zshrc file to match your preference.
+In contrast to the rbates version, this rakefile does not copy the zshrc
+file to `.zshrc`. As such, you can fork this repo and make your own
+changes which will be maintained across systems. If you need
+customizations on a system by system basis though, you can create a
+`.zshrc.local` file.
 
 
-## Features
+## Features - rabtes plugin
 
-Many of the following features are added through the "rbates" Oh My ZSH plugin.
+Many of the following features are added through the "rbates" Oh My ZSH plugin. This plugin is no longer included by default, but will have to be added to your `.zshrc`.
 
-I normally place all of my coding projects in ~/code, so this directory can easily be accessed (and tab completed) with the "c" command.
+Ryan (and I) normally place all coding projects in ~/code. As a convenience, this plugin makes it possible to access (and tab complete) this directory with the "c" command.
 
 ```terminal
 c railsca<tab>
@@ -52,7 +66,7 @@ There are several features enabled in Ruby's irb including history and completio
 
 ## Uninstall
 
-To remove the dotfile configs, run the following commands. Be certain to double check the contents of the files before removing so you don't lose custom settings.
+To remove the dotfile configs, just remove all of the links using `unlink`. Then you can 
 
 ```
 unlink ~/.bin
@@ -62,11 +76,28 @@ unlink ~/.gvimrc
 unlink ~/.irbrc
 unlink ~/.vim
 unlink ~/.vimrc
-rm ~/.zshrc # careful here
+unlink ~/.zshrc
 rm ~/.gitconfig
-rm -rf ~/.dotfiles
 rm -rf ~/.oh-my-zsh
-chsh -s /bin/bash # change back to Bash if you want
+# change back to Bash
+chsh -s /bin/bash
+# If your really feeling so inclined - not necessary
+rm -rf ~/.dotfiles
 ```
 
-Then open a new terminal window to see the effects.
+You can then look in ~/.dotfiles/backups/ for any previous settings
+which you would like to restore, open up a new terminal session, and see
+things the way they used to be.
+
+
+## Future
+
+I have vague plans of making it so that this repository only contains
+the mechanics for managing dotfiles, but allowing for users to specify
+their own dotfiles repository as a submodule, making it possible for
+this code base to be used by folks with wildly different setups without
+having to fork the mechanical stuff. Hopefully, this will lead to other
+folks using the mechanical stuff, improving on the code base, and making
+it really easy for everyone to have their own way with this.
+
+

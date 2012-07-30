@@ -1,0 +1,58 @@
+
+" For doing plain text...
+command! -nargs=* Plain set wrap linebreak nolist spell
+
+" I'm going to use these Alt-binding now for moving through text more easily
+" when I'm wrapping, but these (for now, unless I figure something clever out)
+" are only going to work in Gvim.
+vmap <A-j> gj
+vmap <A-k> gk
+vmap <A-4> g$
+vmap <A-6> g^
+vmap <A-0> g^
+nmap <A-j> gj
+nmap <A-k> gk
+nmap <A-4> g$
+nmap <A-6> g^
+nmap <A-0> g^
+
+" Perhaps eventually I will find a slicker way of getting something that will
+" work in all settings. This does not seem to write to the 0 and $ motions
+" though (the modified motions that is). This also seems to override the
+" default functionality of Ctrl-c etc. Shitty. Why can't I just bind super to
+" D?
+"vmap <C-J> gj
+"vmap <C-K> gk
+"vmap <C-$> g$
+"vmap <C-)> g^
+"nmap <C-J> gj
+"nmap <C-K> gk
+"nmap <C-$> g$
+"nmap <C-)> g^
+
+
+"au BufNewFile,BufRead SCons* set filetype=scons
+au BufNewFile,BufRead SCons* set filetype=python
+" the scons type is supposed to inherit from the python type, but there are a
+" bunch of things that don't seem to inherit properly, so for now, should just
+" use the python type until this is fixed.
+"
+
+au BufNewFile,BufRead less set filetype=css
+
+:set guioptions-=m "Remove menu bar
+:set guioptions-=T "Remove tool bar
+
+color ir_black
+
+
+let vimrplugin_screenplugin = 0
+let vimrplugin_underscore = 0
+
+" Because it's annoying when shifting for ':' lingers for w or q and you think
+" you've saved but haven't....
+command! W w
+command! Q q
+
+" Hmmm... This doesn't seem to work. Fails to distiguish captial
+:nnoremap <C-X> <C-a>

@@ -19,7 +19,7 @@ class Object
   def local_methods(obj = self)
     (obj.methods - obj.class.superclass.instance_methods).sort
   end
-  
+
   # print documentation
   #
   #   ri 'Array#pop'
@@ -35,8 +35,10 @@ class Object
   end
 end
 
+# Should replace these all with xclip versions!!
 def copy(str)
-  IO.popen('pbcopy', 'w') { |f| f << str.to_s }
+  # Need -i?
+  IO.popen('xclip -selection clipboard', 'w') { |f| f << str.to_s }
 end
 
 def copy_history
@@ -48,5 +50,5 @@ def copy_history
 end
 
 def paste
-  `pbpaste`
+  `xclip -selection clipboard -out`
 end

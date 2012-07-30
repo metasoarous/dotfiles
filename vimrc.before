@@ -1,0 +1,5 @@
+call janus#disable_plugin('fugitive', 'Causes slow death and pain when on silo')
+
+
+let maplocalleader=','
+

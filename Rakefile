@@ -1,18 +1,17 @@
 require 'rake'
 require 'erb'
 
-desc "install the dot files into user's home directory"
+
+desc "install the dot files into user's home directory - use replace_all=true to replace all files"
 task :install do
   install_oh_my_zsh
+  install_janus
   switch_to_zsh
-  replace_all = false
-  files = Dir['*'] - %w[Rakefile README.rdoc LICENSE oh-my-zsh]
-  files << "oh-my-zsh/custom/plugins/rbates"
-  files << "oh-my-zsh/custom/rbates.zsh-theme"
-  files.each do |file|
+  replace_all = ENV['replace_all'] == 'true'
+  dotfiles.each do |file|
     system %Q{mkdir -p "$HOME/.#{File.dirname(file)}"} if file =~ /\//
-    if File.exist?(File.join(ENV['HOME'], ".#{file.sub(/\.erb$/, '')}"))
-      if File.identical? file, File.join(ENV['HOME'], ".#{file.sub(/\.erb$/, '')}")
+    if File.exist?(dotted_filename(file))
+      if File.identical? file, dotted_filename(file)
         puts "identical ~/.#{file.sub(/\.erb$/, '')}"
       elsif replace_all
         replace_file(file)
@@ -36,6 +35,30 @@ task :install do
   end
 end
 
+desc "backup all dot files"
+task :backup do
+  bkp_dir = "backups/backup_#{Time.now.strftime('%Y-%m-d_%H-%M.%L')}"
+  puts "Backing up dotfiles to "
+  system %Q{mkdir -p "#{bkp_dir}"}
+  dotfiles.map {|f| dotted_filename(f)}.each do |file|
+    system %Q{cp -r "#{file}" "#{bkp_dir}"} if File.exists?(file)
+  end
+  puts "Backup complete - `rake install` with confidence!"
+end
+
+
+def dotted_filename(undotted_name)
+  File.join(ENV['HOME'], ".#{undotted_name.sub(/\.erb$/, '')}")
+end
+
+def dotfiles
+  files = Dir['*'] - %w[Rakefile README.md LICENSE oh-my-zsh janus backups]
+  files << "oh-my-zsh/custom/plugins/rbates"
+  files << "oh-my-zsh/custom/rbates.zsh-theme"
+  files << "janus/rbates"
+  files
+end
+
 def replace_file(file)
   system %Q{rm -rf "$HOME/.#{file.sub(/\.erb$/, '')}"}
   link_file(file)
@@ -47,9 +70,6 @@ def link_file(file)
     File.open(File.join(ENV['HOME'], ".#{file.sub(/\.erb$/, '')}"), 'w') do |new_file|
       new_file.write ERB.new(File.read(file)).result(binding)
     end
-  elsif file =~ /zshrc$/ # copy zshrc instead of link
-    puts "copying ~/.#{file}"
-    system %Q{cp "$PWD/#{file}" "$HOME/.#{file}"}
   else
     puts "linking ~/.#{file}"
     system %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
@@ -85,7 +105,13 @@ def install_oh_my_zsh
     when 'q'
       exit
     else
-      puts "skipping oh-my-zsh, you will need to change ~/.zshrc"
+      puts "skipping oh-my-zsh - you may need to change ~/.zshrc"
     end
+  end
+end
+
+def install_janus
+  if File.exists?(File.join(ENV['HOME'], '.vim/janus'))
+    system "curl -Lo- https://bit.ly/janus-bootstrap | bash"
   end
 end
