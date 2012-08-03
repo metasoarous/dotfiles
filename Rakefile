@@ -64,9 +64,9 @@ end
 def dotfiles
   files = Dir['*'] - %w[Rakefile README.md LICENSE oh-my-zsh janus backups bin]
   files += Dir['bin/*']
+  files += Dir['janus/*']
   files << "oh-my-zsh/custom/plugins/rbates"
   files << "oh-my-zsh/custom/rbates.zsh-theme"
-  files << "janus/rbates"
   files
 end
 

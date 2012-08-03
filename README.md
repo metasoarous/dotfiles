@@ -100,4 +100,6 @@ having to fork the mechanical stuff. Hopefully, this will lead to other
 folks using the mechanical stuff, improving on the code base, and making
 it really easy for everyone to have their own way with this.
 
+Other tidbits -
 
+Automaticall chmod +x bin/*
