@@ -56,3 +56,5 @@ command! Q q
 
 " Hmmm... This doesn't seem to work. Fails to distiguish captial
 :nnoremap <C-X> <C-a>
+
+:set noea
