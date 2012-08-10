@@ -58,3 +58,8 @@ command! Q q
 :nnoremap <C-X> <C-a>
 
 :set noea
+
+
+" Spell check settings
+
+:hi SpellBad cterm=bold ctermbg=black
