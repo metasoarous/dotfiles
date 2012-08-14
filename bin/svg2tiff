@@ -7,4 +7,5 @@ for i in $@; do
   convert -alpha deactivate $BN.png $BN.tiff
   rm $BN.png
 done
+echo "Done making tiffs - have a nice day"
 
