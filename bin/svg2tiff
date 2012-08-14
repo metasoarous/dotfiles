@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "Now producing PLoS friendly tiffs"
+for i in $@; do
+  BN=$(basename $i .svg)
+  inkscape --without-gui --export-png="$BN.png" --export-dpi 300 $i
+  convert -alpha deactivate $BN.png $BN.tiff
+  rm $BN.png
+done
+
