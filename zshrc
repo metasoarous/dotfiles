@@ -86,6 +86,14 @@ tsvcnt () {
   csvcut -c $1 -t $2 | sort | uniq -c
 }
 
+csvhead () {
+  head $@ | csvlook
+}
+
+csvtail () {
+  htail $@ | csvlook
+}
+
 htail () {
   if [[ ! -n $2 ]]
   then
