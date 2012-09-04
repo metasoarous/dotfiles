@@ -63,3 +63,5 @@ command! Q q
 " Spell check settings
 
 :hi SpellBad cterm=bold ctermbg=black
+
+:set textwidth=110
