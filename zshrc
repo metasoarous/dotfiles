@@ -105,6 +105,10 @@ htail () {
   tail -n $n $1
 }
 
+avless () {
+  av -L 10000 -w 10000 -cx $@ | less -S
+}
+
 waid () {
   ps ux --sort s | less -S
 }
