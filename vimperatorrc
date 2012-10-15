@@ -1,0 +1,3 @@
+command! Q q
+command! -nargs=* T t <args>
+command! -nargs=* O o <args>
