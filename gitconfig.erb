@@ -4,15 +4,30 @@
 [color]
 	diff = auto
 	status = auto
-	branch = auto
+  branch = auto
+  ui = auto
+[pager]
+  diff =
+[merge]
+  tool= vimdiff
 [core]
 	excludesfile = <%= ENV['HOME'] %>/.gitignore
 	editor = vim
-	autocrlf = input
+  autocrlf = input
+  pager = less -FXRS
 [apply]
 	whitespace = nowarn
 [format]
 	pretty = %C(yellow)%h%Creset %s %C(red)(%an, %cr)%Creset
 [github]
 	user = <%= print("GitHub Username: "); STDOUT.flush; STDIN.gets.chomp %>
-	token = <%= print("GitHub API Token: "); STDOUT.flush; STDIN.gets.chomp %>
+[alias]
+  ca = commit -a
+  cav = commit -av
+  st = status
+  br = branch
+  co = checkout
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  ls = ls-files
+  p4m = mergetool --tool=p4merge

@@ -1,4 +1,3 @@
-
 # Chris Small Dot Files
 
 These are config files for setting up a system the way I like it. It is
@@ -16,7 +15,7 @@ based on the Ryan Bates Dot Files repository.
 Run the following commands in your terminal. It will prompt you before it does anything destructive. Check out the [Rakefile](https://github.com/metasoarous/dotfiles/blob/custom-bash-zsh/Rakefile) to see exactly what it does.
 
 ```terminal
-git clone git://github.com/ryanb/dotfiles ~/.dotfiles
+git clone git://github.com/metasoarous/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 # If you want to backup your existing config files before getting in too
 # deep...
