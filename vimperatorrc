@@ -1,3 +1,6 @@
 command! Q q
 command! -nargs=* T t <args>
 command! -nargs=* O o <args>
+
+command! -nargs=* tbm bmark -tags <args>
+command! rlsrc source ~/.vimperatorrc
