@@ -86,6 +86,29 @@ tsvcnt () {
   csvcut -c $1 -t $2 | sort | uniq -c
 }
 
+csvhead () {
+  head $@ | csvlook
+}
+
+csvtail () {
+  htail $@ | csvlook
+}
+
+htail () {
+  if [[ ! -n $2 ]]
+  then
+    n=10
+  else
+    n=$2
+  fi
+  head -n 1 $1
+  tail -n $n $1
+}
+
+avless () {
+  av -L 10000 -w 10000 -cx $@ | less -S
+}
+
 waid () {
   ps ux --sort s | less -S
 }

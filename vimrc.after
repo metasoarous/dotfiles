@@ -40,8 +40,8 @@ au BufNewFile,BufRead SCons* set filetype=python
 
 au BufNewFile,BufRead less set filetype=css
 
-:set guioptions-=m "Remove menu bar
-:set guioptions-=T "Remove tool bar
+set guioptions-=m "Remove menu bar
+set guioptions-=T "Remove tool bar
 
 color ir_black
 
@@ -55,11 +55,14 @@ command! W w
 command! Q q
 
 " Hmmm... This doesn't seem to work. Fails to distiguish captial
-:nnoremap <C-X> <C-a>
+nnoremap <C-X> <C-a>
 
-:set noea
+set noea
 
 
 " Spell check settings
 
-:hi SpellBad cterm=bold ctermbg=black
+hi SpellBad cterm=bold ctermbg=black
+
+set textwidth=110
+
