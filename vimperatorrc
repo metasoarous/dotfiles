@@ -4,3 +4,35 @@ command! -nargs=* O o <args>
 
 command! -nargs=* tbm bmark -tags <args>
 command! rlsrc source ~/.vimperatorrc
+
+
+" Erick's stuff.... from the below presumably
+"  <modifications> - notes the obvious
+" http://www.roguelazer.com/misc-tech/2011/01/firefox-4-and-vimperator-3/
+
+"The first block sets up some useful parameters: it disables completion of
+"local filenames (which is still dog-slow under Firefox 4), it disables the
+"bulky, ugly toolbar, it turns on search highlighting, and it forces the
+"tab-bar to always be shown.
+set activate=addons,downloads,extoptions,help,quickmark,tabopen
+set complete=slt
+set guioptions=br
+set hlsearch
+
+" pass all keys for gmail <modifications>
+autocmd LocationChange .* js modes.passAllKeys = /(www\.rememberthemilk\.com|mail\.google\.com|www\.google\.com\/reader)/.test(buffer.URL)
+autocmd LocationChange mail\\.google\\.com :set editor="gvim -f -c 'set ft=mail'"
+
+" these are for app tabs http://support.mozilla.com/en-US/kb/what-are-app-tabs
+command! -nargs=? -description="Pin the given tab" pin javascript config.tabbrowser.pinTab(tabs.getTab(<args>))
+command! -nargs=? -description="Unpin the given tab" unpin javascript config.tabbrowser.unpinTab(tabs.getTab(<args>))
+nmap gp :pin
+nmap gu :unpin
+
+qmark e https://mail.google.com/
+qmark r https://www.google.com/reader/
+qmark x https://docs.google.com/
+qmark c https://calendar.google.com/
+qmark f https://hutch.campfirenow.com/
+qmark g https://www.github.com/
+qmark m http://www.rememberthemilk.com/home/erick.matsen/#section.tasks
