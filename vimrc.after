@@ -1,6 +1,6 @@
 
 " For doing plain text...
-command! -nargs=* Plain set wrap linebreak nolist spell
+command! -nargs=* Plain set wrap linebreak nolist spell tw=111111
 
 " I'm going to use these Alt-binding now for moving through text more easily
 " when I'm wrapping, but these (for now, unless I figure something clever out)
