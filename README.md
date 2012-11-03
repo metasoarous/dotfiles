@@ -102,3 +102,4 @@ it really easy for everyone to have their own way with this.
 Other tidbits -
 
 Automaticall chmod +x bin/*
+Test out vim_diff_wrapper
