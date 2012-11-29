@@ -5,7 +5,6 @@ require 'erb'
 desc "install the dot files into user's home directory - use replace_all=true to replace all files"
 task :install do
   install_oh_my_zsh
-  install_janus
   switch_to_zsh
   replace_all = ENV['replace_all'] == 'true'
   dotfiles.each do |file|
@@ -62,9 +61,8 @@ def dotted_filename(undotted_name, pp=false)
 end
 
 def dotfiles
-  files = Dir['*'] - %w[Rakefile README.md LICENSE oh-my-zsh janus backups bin]
+  files = Dir['*'] - %w[Rakefile README.md LICENSE oh-my-zsh backups bin]
   files += Dir['bin/*']
-  files += Dir['janus/*']
   files << "oh-my-zsh/custom/plugins/rbates"
   files << "oh-my-zsh/custom/rbates.zsh-theme"
   files
@@ -121,11 +119,3 @@ def install_oh_my_zsh
   end
 end
 
-def install_janus
-  if File.exists?(File.join(ENV['HOME'], '.vim/janus'))
-    puts "Already using janus"
-  else
-    puts "installing janus"
-    system "curl -Lo- https://bit.ly/janus-bootstrap | bash"
-  end
-end
