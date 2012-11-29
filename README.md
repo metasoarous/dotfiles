@@ -99,6 +99,8 @@ having to fork the mechanical stuff. Hopefully, this will lead to other
 folks using the mechanical stuff, improving on the code base, and making
 it really easy for everyone to have their own way with this.
 
+In particular, it would be nice if this Raking back and forth worked a bit more like "migrations", so that, for instance, if one removed janus in favor of pathogen, things would go smoothly. Of course, there was code in working with some of this, so would have to modularize to a good extent to be sure. But would be really awesome.
+
 Other tidbits -
 
 Automaticall chmod +x bin/*
