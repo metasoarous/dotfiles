@@ -1,7 +1,0 @@
-set guioptions-=T "Remove tool bar
-"set guioptions-=m "Remove menu bar - no sure how I feel about this
-
-colorscheme ir_black
-
-set lines=58 columns=100
-
