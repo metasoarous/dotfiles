@@ -56,8 +56,8 @@ map <leader>t :NERDTreeToggle <CR>
 autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-
-
+" Disables pandoc folding - kinda neet though. Might be cool to activate this later
+let g:pandoc_no_folding = 1
 
 
 

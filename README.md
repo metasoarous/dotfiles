@@ -67,7 +67,7 @@ There are several features enabled in Ruby's irb including history and completio
 
 To remove the dotfile configs, just remove all of the links using `unlink`. Then you can 
 
-```
+```terminal
 unlink ~/.bin
 unlink ~/.gitignore
 unlink ~/.gemrc
