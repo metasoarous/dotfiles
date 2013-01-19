@@ -61,6 +61,10 @@ let NERDTreeIgnore = ['\.pyc$', '\.RData$']
 let g:pandoc_no_folding = 1
 
 
+if has("gui_running")
+  set lines=70 columns=110 
+endif
+
 
 
 "" The below was all snagged from janus. Moving away..
@@ -130,6 +134,8 @@ if has("autocmd")
 " see :help last-position-jump
   au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
         \| exe "normal! g`\"" | endif
+  " XXX - Custom...
+  au FileType mail setlocal wrap softtabstop=4 tabstop=4 shiftwidth=4 tw=999999 linebreak spell
 endif
 
 
