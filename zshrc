@@ -173,23 +173,5 @@ alias ack='ack-grep'
 alias hmin='csvcut -C A_to_A,A_to_C,A_to_G,A_to_T,C_to_A,C_to_C,C_to_G,C_to_T,G_to_A,G_to_C,G_to_G,G_to_T,T_to_A,T_to_C,T_to_G,T_to_T'
 
 
-# Cluster stuffs!!!!!!
-# ====================
-
-myjobs () {
-  squeue -u $(whoami) -o "%.7i %.9P %.20j %.8u %.2t %.10M %.10M6D %R" $@
-}
-
-function mailme(){
-    echo $(date): your command on $SLURMD_NODENAME exited with status $? | mail -s 'hyrax job done!' csmall@fhcrc.org
-}
-# Example:
-# grabfullnode
-# > long_running_process.sh; mailme; exit
-
-# Also note: nodetop gizmod33 (for example), scancel, 
-# scontrol show job $SLURM_JOB_ID
-
-
 [[ -s $HOME/.zshrc.local.after ]] && source $HOME/.zshrc.local.after
 
