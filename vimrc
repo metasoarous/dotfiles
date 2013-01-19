@@ -38,6 +38,10 @@ let vimrplugin_underscore = 0
 command! W w
 command! Q q
 
+command! Mail set ft=mail
+" Should really set this up as a separate ft
+command! Plain set spell linebreak wrap tw=1111111
+
 " Hmmm... This doesn't seem to work. Fails to distiguish captial
 nnoremap <C-X> <C-a>
 
