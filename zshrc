@@ -100,6 +100,15 @@ csvtail () {
   htail $@ | csvlook
 }
 
+# Stuff for json!
+alias jsonlook='python -mjson.tool'
+jsonless () {
+  jsonlook $@ | less
+}
+jsonhead () {
+  jsonlook $@ | head
+}
+
 htail () {
   if [[ ! -n $2 ]]
   then
@@ -148,6 +157,8 @@ alias wdid='ls -chlt | head'
 # quick zsh mods
 alias rzsh='source ~/.zshrc'
 alias ezsh='vim ~/.zshrc'
+
+which colordiff > /dev/null && alias diff="colordiff"
 
 
 bindkey '\e.' insert-last-word
