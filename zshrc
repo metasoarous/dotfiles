@@ -143,6 +143,10 @@ alias wdid='ls -chlt | head'
 alias rzsh='source ~/.zshrc'
 alias ezsh='vim ~/.zshrc'
 
+# Ease access to betaratio stats -
+alias brppf='beta_rat.py ppf'
+alias brcdf='beta_rat.py cdf'
+
 
 bindkey '\e.' insert-last-word
 
