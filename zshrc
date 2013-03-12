@@ -35,6 +35,12 @@ OCAMLRUNPARAM=b
 # Load rvm if present
 [[ -s "/home/$USER/.rvm/scripts/rvm" ]] && source "/home/$USER/.rvm/scripts/rvm" 
 
+# These are from http://www.f30.me/2012/10/oh-my-zsh-key-bindings-on-ubuntu-12-10/
+# Solves no up-line-or-search functionality from oh-my-zsh. Try removing periodically. Appears to be a cleaner
+# patch which may be going to omzsh - XXX
+bindkey "${terminfo[kcuu1]}" up-line-or-search
+bindkey "${terminfo[kcud1]}" down-line-or-search
+
 
 # Archeopterix helper
 aptx() {
@@ -94,6 +100,15 @@ csvtail () {
   htail $@ | csvlook
 }
 
+# Stuff for json!
+alias jsonlook='python -mjson.tool'
+jsonless () {
+  jsonlook $@ | less
+}
+jsonhead () {
+  jsonlook $@ | head
+}
+
 htail () {
   if [[ ! -n $2 ]]
   then
@@ -148,6 +163,8 @@ alias brppf='beta_rat.py ppf'
 alias brcdf='beta_rat.py cdf'
 
 
+which colordiff > /dev/null && alias diff="colordiff"
+
 bindkey '\e.' insert-last-word
 
 # For when my clutsy ass forgets to add things to a git commit
@@ -178,4 +195,6 @@ alias hmin='csvcut -C A_to_A,A_to_C,A_to_G,A_to_T,C_to_A,C_to_C,C_to_G,C_to_T,G_
 
 
 [[ -s $HOME/.zshrc.local.after ]] && source $HOME/.zshrc.local.after
+
+
 
