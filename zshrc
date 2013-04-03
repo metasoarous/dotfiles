@@ -19,6 +19,10 @@ plugins=()
 
 # Main path list. Can be added to with ~/.zshrc.local
 export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin
+
+# Enables autojump ocation to be overridden on a local basis - need for fhcrc servers
+autojump=/usr/share/autojump/autojump.zsh
+
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 # Load oh my zsh
 source $ZSH/oh-my-zsh.sh
@@ -158,8 +162,12 @@ alias wdid='ls -chlt | head'
 alias rzsh='source ~/.zshrc'
 alias ezsh='vim ~/.zshrc'
 
-which colordiff > /dev/null && alias diff="colordiff"
+# Ease access to betaratio stats -
+alias brppf='beta_rat.py ppf'
+alias brcdf='beta_rat.py cdf'
 
+
+which colordiff > /dev/null && alias diff="colordiff"
 
 bindkey '\e.' insert-last-word
 
@@ -189,9 +197,11 @@ alias ack='ack-grep'
 # Specifically relevant to hypermut output - make columns easier to read
 alias hmin='csvcut -C A_to_A,A_to_C,A_to_G,A_to_T,C_to_A,C_to_C,C_to_G,C_to_T,G_to_A,G_to_C,G_to_G,G_to_T,T_to_A,T_to_C,T_to_G,T_to_T'
 
+# auto jump !
+[[ -s $autojump ]] && . $autojump && autoload -U compinit && compinit
+
 
 [[ -s $HOME/.zshrc.local.after ]] && source $HOME/.zshrc.local.after
-
 
 
 
