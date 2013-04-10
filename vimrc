@@ -2,7 +2,7 @@
 call pathogen#infect()
 
 let mapleader = ","
-let maplocalleader = "'"
+let maplocalleader = "\\"
 
 " I'm going to use these Alt-binding now for moving through text more easily
 " when I'm wrapping, but these (for now, unless I figure something clever out)
