@@ -128,6 +128,8 @@ avless () {
   av -L 10000 -w 10000 -cx $@ | less -S
 }
 
+alias avlook='av -L 10000 -w 10000 -cx'
+
 waid () {
   ps ux --sort s | less -S
 }
