@@ -1,3 +1,4 @@
+autoload -U colors && colors
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -18,7 +19,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=()
 
 # Main path list. Can be added to with ~/.zshrc.local
-export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin
+export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 # Load oh my zsh
 source $ZSH/oh-my-zsh.sh
@@ -186,6 +187,20 @@ compdef _c c
 h() { cd ~/$1; }
 _h() { _files -W ~/ -/; }
 compdef _h h
+
+
+# For evil deeds...
+hdoze () {
+  if [[ -n $1 ]]
+  then
+    # Only parameter (optional) is height
+    height=$1
+  else
+    # Default window height is...
+    height=1380
+  fi
+  rdesktop -u csmall -d FHCRC phs-terminal.fhcrc.org -K -T "For evil deeds..." -g 1450x$height
+}
 
 
 alias ack='ack-grep'
