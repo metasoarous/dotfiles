@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+for pid (`ps ux | grep sshfs | grep mounts | grep -v grep | pyp "p.split()[1]"`); do
+  call=`ps p $pid | grep sshfs | pyp "' '.join(p.split()[5:])"`
+  mntpnt=`echo $call | pyp "p.split()[-1]"`
+  echo sshfs $call
+  kill -9 $pid && fusermount -u $mntpnt && sshfs $call
+done
