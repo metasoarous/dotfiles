@@ -4,6 +4,24 @@ call pathogen#infect()
 let mapleader = ","
 let maplocalleader = "\\"
 
+
+" Awesome rad maps...
+
+map <leader>P :Plain<enter>
+map <leader>p "+p
+map <leader>Y "+yy
+map <leader>m :Mail<enter>
+map <leader>M :Mail<enter>
+
+map <C-s> :w<enter>
+" Shouldn't need this one, but just in case I haven't yet
+map <C-S> :w<enter>
+
+" We'll have to see how this one works
+vmap <leader>y "+y
+
+
+
 " I'm going to use these Alt-binding now for moving through text more easily
 " when I'm wrapping, but these (for now, unless I figure something clever out)
 " are only going to work in Gvim.

@@ -32,6 +32,8 @@ source $ZSH/oh-my-zsh.sh
 # I've decided maybe autocorrection IS maybe more trouble than worth...
 unsetopt correct_all
 
+# This is suposed to disable the Ctrl-S Xoff feature of the shell... We'll see if it works for Zsh
+stty -ixon
 
 # Ocaml dev settings
 OCAMLRUNPARAM=b
