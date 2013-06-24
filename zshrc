@@ -71,6 +71,7 @@ r () {
       DISPLAY=$NEW_DISPLAY 
     fi
   fi
+  rzsh
 }
 
 # Easy xclipping...
