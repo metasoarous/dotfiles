@@ -162,6 +162,8 @@ pdfjoin () {
 alias ll='ls -hl'
 alias la='ls -hla'
 alias wdid='ls -chlt | head'
+alias l='ls -hl'
+alias files='nautilus'
 
 # quick zsh mods
 alias rzsh='source ~/.zshrc'
@@ -205,7 +207,8 @@ hdoze () {
     height=$1
   else
     # Default window height is...
-    height=1380
+    height=`xdpyinfo | grep dimensions | sed "s/.*[0-9]*x\([0-9]*\) pixels.*/\1/"`
+    ((height=$height - 60))
   fi
   rdesktop -u csmall -d FHCRC phs-terminal.fhcrc.org -K -T "For evil deeds..." -g 1450x$height
 }
