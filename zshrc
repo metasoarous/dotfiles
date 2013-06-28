@@ -54,8 +54,9 @@ aptx() {
   java -jar ~/bin/forester.jar -c ~/.aptxrc $1
 }
 
-# Reload X tunells if in tmux
+# Reload shell
 r () {
+  # Reload X tunells if in tmux
   if [[ -n $TMUX ]]
   then
     NEW_SSH_AUTH_SOCK=`tmux showenv|grep "^SSH_AUTH_SOCK"|cut -d = -f 2` 
@@ -71,7 +72,8 @@ r () {
       DISPLAY=$NEW_DISPLAY 
     fi
   fi
-  rzsh
+  # Reload shell rc
+  rrc  
 }
 
 # Easy xclipping...
@@ -167,8 +169,8 @@ alias l='ls -hl'
 alias files='nautilus'
 
 # quick zsh mods
-alias rzsh='source ~/.zshrc'
-alias ezsh='vim ~/.zshrc'
+alias rrc='source ~/.zshrc'
+alias erc='vim ~/.zshrc'
 
 # Ease access to betaratio stats -
 alias brppf='beta_rat.py ppf'
