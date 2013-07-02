@@ -12,19 +12,21 @@ DISABLE_AUTO_TITLE="true"
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=()
 
-# Main path list. Can be added to with ~/.zshrc.local
-export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin
-
 # Enables autojump ocation to be overridden on a local basis - need for fhcrc servers
 autojump=/usr/share/autojump/autojump.zsh
 
+# Main path list. Can be added to with ~/.zshrc.local
+export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin
+
+
+# Local early bird overrides, modifications
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+
 # Load oh my zsh
 source $ZSH/oh-my-zsh.sh
 
@@ -32,21 +34,47 @@ source $ZSH/oh-my-zsh.sh
 # I've decided maybe autocorrection IS maybe more trouble than worth...
 unsetopt correct_all
 
-# This is suposed to disable the Ctrl-S Xoff feature of the shell... We'll see if it works for Zsh
-stty -ixon
-
 # Ocaml dev settings
-OCAMLRUNPARAM=b
-
+export OCAMLRUNPARAM=b
 
 # Load rvm if present
 [[ -s "/home/$USER/.rvm/scripts/rvm" ]] && source "/home/$USER/.rvm/scripts/rvm" 
+# Add RVM to PATH for scripting
+export PATH=$PATH:$HOME/.rvm/bin
+
+# Sets diff to colordiff if present
+which colordiff > /dev/null && alias diff="colordiff"
 
 # These are from http://www.f30.me/2012/10/oh-my-zsh-key-bindings-on-ubuntu-12-10/
 # Solves no up-line-or-search functionality from oh-my-zsh. Try removing periodically. Appears to be a cleaner
 # patch which may be going to omzsh - XXX
 bindkey "${terminfo[kcuu1]}" up-line-or-search
 bindkey "${terminfo[kcud1]}" down-line-or-search
+
+# This is disables the Ctrl-S Xoff feature of the shell
+stty -ixon
+
+
+
+
+# ALIASES!!!!!!!!!!
+# =================
+
+# Listing aliases
+alias ll='ls -hl'
+alias la='ls -hla'
+alias wdid='ls -chlt | head'
+alias l='ls -hl'
+alias files='nautilus'
+
+# quick zsh mods
+alias rrc='source ~/.zshrc'
+alias erc='vim ~/.zshrc'
+
+# Other
+alias ack='ack-grep'
+alias rl='readlink -f'
+alias xc='xclip -selection clip'
 
 
 # Archeopterix helper
@@ -76,41 +104,26 @@ r () {
   rrc  
 }
 
-# Easy xclipping...
-xc () {
-  xclip -selection clip $1
-}
-
 # Readlink piped to xclip...
 rlxc () {
-  readlink -f $1 | xc
+  rl $1 | xc
 }
 
+# CSVKIT stuffs
 csvless () {
   csvlook $1 | less -S
 }
-
 tsvless () {
   csvlook -t $1 | less -S
 }
-
-csvcnt () {
-  csvcut -c $1 $2 | sort | uniq -c
-}
-
-tsvcnt () {
-  csvcut -c $1 -t $2 | sort | uniq -c
-}
-
 csvhead () {
   head $@ | csvlook
 }
-
 csvtail () {
   htail $@ | csvlook
 }
 
-# Stuff for json!
+# Similarly, for json
 alias jsonlook='python -mjson.tool'
 jsonless () {
   jsonlook $@ | less
@@ -140,44 +153,25 @@ waid () {
   ps ux --sort s | less -S
 }
 
-# Should make my own css defaults for these guys
+# Markdown converters
 md2html () {
   for i in $@
   do
     pandoc $i -s --css "http://matsen.fhcrc.org/webpage.css" -o $(basename $i .md).html
   done
 }
-
 md2slidy () {
   for i in $@
   do
     pandoc $i -s --css "http://matsen.fhcrc.org/webpage.css" --to=slidy -o $(basename $i .md).html
   done
 }
-
-
 pdfjoin () {
   pdftk $@ cat output joined.pdf
   print "Joined pdf saved to joined.pdf!"
 }
 
-# Listing aliases
-alias ll='ls -hl'
-alias la='ls -hla'
-alias wdid='ls -chlt | head'
-alias l='ls -hl'
-alias files='nautilus'
 
-# quick zsh mods
-alias rrc='source ~/.zshrc'
-alias erc='vim ~/.zshrc'
-
-# Ease access to betaratio stats -
-alias brppf='beta_rat.py ppf'
-alias brcdf='beta_rat.py cdf'
-
-
-which colordiff > /dev/null && alias diff="colordiff"
 
 bindkey '\e.' insert-last-word
 
@@ -189,17 +183,8 @@ forgitadd () {
 }
 
 
+# Supposed to clip out the stderr; doesn't quite work yet...
 alias stderrxc='2>&1 > /dev/null | xc'
-
-
-# From mr bates
-c() { cd ~/code/$1; }
-_c() { _files -W ~/code -/; }
-compdef _c c
-
-h() { cd ~/$1; }
-_h() { _files -W ~/ -/; }
-compdef _h h
 
 
 # For evil deeds...
@@ -217,17 +202,11 @@ hdoze () {
 }
 
 
-alias ack='ack-grep'
-
-# Specifically relevant to hypermut output - make columns easier to read
-alias hmin='csvcut -C A_to_A,A_to_C,A_to_G,A_to_T,C_to_A,C_to_C,C_to_G,C_to_T,G_to_A,G_to_C,G_to_G,G_to_T,T_to_A,T_to_C,T_to_G,T_to_T'
-
 # auto jump !
+#
 [[ -s $autojump ]] && . $autojump && autoload -U compinit && compinit
 
-
+# If anything needs to be modified for 
 [[ -s $HOME/.zshrc.local.after ]] && source $HOME/.zshrc.local.after
 
 
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
