@@ -213,7 +213,7 @@ hdoze () {
     height=`xdpyinfo | grep dimensions | sed "s/.*[0-9]*x\([0-9]*\) pixels.*/\1/"`
     ((height=$height - 60))
   fi
-  rdesktop -u csmall -d FHCRC phs-terminal.fhcrc.org -K -T "For evil deeds..." -g 1450x$height
+  rdesktop -u csmall -d FHCRC phs-terminal.fhcrc.org -K -T "For evil deeds..." -g 1450x$height &
 }
 
 
