@@ -225,3 +225,6 @@ alias hmin='csvcut -C A_to_A,A_to_C,A_to_G,A_to_T,C_to_A,C_to_C,C_to_G,C_to_T,G_
 
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
