@@ -73,7 +73,6 @@ alias erc='vim ~/.zshrc'
 
 # Other
 alias ack='ack-grep'
-alias rl='readlink -f'
 alias xc='xclip -selection clip'
 
 
@@ -105,6 +104,15 @@ r () {
 }
 
 # Readlink piped to xclip...
+rl () {
+  if [[ -n $1 ]]
+  then
+    p=$1
+  else
+    p='.'
+  fi
+  readlink -f $p
+}
 rlxc () {
   rl $1 | xc
 }
@@ -203,7 +211,6 @@ hdoze () {
 
 
 # auto jump !
-#
 [[ -s $autojump ]] && . $autojump && autoload -U compinit && compinit
 
 # If anything needs to be modified for 
