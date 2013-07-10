@@ -219,3 +219,8 @@ hdoze () {
 [[ -s $HOME/.zshrc.local.after ]] && source $HOME/.zshrc.local.after
 
 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
