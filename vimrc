@@ -21,6 +21,15 @@ map <C-S> :w<enter>
 vmap <leader>y "+y
 
 
+" don't stage - git helper for removing things from staging on add -e
+"vmap <leader>ds <line1>,<line2>call DontStage()<enter>
+function! DontStage() range
+  execute a:firstline . "," . a:lastline . 's/^-/ /'
+  execute a:firstline . "," . a:lastline . 'g/^+/d'
+endfunction
+vmap <leader>ds :call DontStage()<enter>
+
+
 
 " I'm going to use these Alt-binding now for moving through text more easily
 " when I'm wrapping, but these (for now, unless I figure something clever out)
