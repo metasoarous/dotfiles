@@ -17,7 +17,7 @@ map <C-s> :w<enter>
 " Shouldn't need this one, but just in case I haven't yet
 map <C-S> :w<enter>
 
-" We'll have to see how this one works
+" yank to X clipboard
 vmap <leader>y "+y
 
 
@@ -69,6 +69,8 @@ command! Q q
 command! Mail set ft=mail
 " Should really set this up as a separate ft
 command! Plain set spell linebreak wrap tw=1111111
+
+command! Reload source ~/.vimrc
 
 " Hmmm... This doesn't seem to work. Fails to distiguish captial
 nnoremap <C-X> <C-a>
