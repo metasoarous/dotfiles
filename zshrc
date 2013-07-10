@@ -74,6 +74,8 @@ alias erc='vim ~/.zshrc'
 # Other
 alias ack='ack-grep'
 alias xc='xclip -selection clip'
+alias sc='scons --debug explain'
+alias scn='scons -n --debug explain'
 
 
 # Archeopterix helper
