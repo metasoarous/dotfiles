@@ -56,7 +56,10 @@ au BufNewFile,BufRead less set filetype=css
 set guioptions-=m "Remove menu bar
 set guioptions-=T "Remove tool bar
 
-color ir_black
+"color ir_black
+set background=light
+colorscheme solarized
+
 
 let vimrplugin_screenplugin = 0
 let vimrplugin_underscore = 0

@@ -4,7 +4,7 @@ ZSH=$HOME/.oh-my-zsh
 
 
 # Theme to load - Look in ~/.oh-my-zsh/themes/ or set to "random"
-ZSH_THEME="duellj"
+ZSH_THEME="gnzh"
 
 # Otherwise fucks with tmux window naming
 DISABLE_AUTO_TITLE="true"
