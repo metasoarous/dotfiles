@@ -76,6 +76,7 @@ alias ack='ack-grep'
 alias xc='xclip -selection clip'
 alias sc='scons --debug explain'
 alias scn='scons -n --debug explain'
+alias evrc='vim ~/.vimrc'
 
 
 # Archeopterix helper

@@ -75,6 +75,7 @@ command! Mail set ft=mail
 command! Plain set spell linebreak wrap tw=1111111
 
 command! Reload source ~/.vimrc
+command! Erc split ~/.vimrc
 
 " Hmmm... This doesn't seem to work. Fails to distiguish captial
 nnoremap <C-X> <C-a>
