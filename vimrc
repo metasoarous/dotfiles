@@ -57,6 +57,7 @@ set guioptions-=m "Remove menu bar
 set guioptions-=T "Remove tool bar
 
 "color ir_black
+call togglebg#map("<F5>")
 set background=light
 colorscheme solarized
 
