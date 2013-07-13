@@ -66,6 +66,7 @@ alias la='ls -hla'
 alias wdid='ls -chlt | head'
 alias l='ls -hl'
 alias files='nautilus'
+alias tmux="TERM=screen-256color-bce tmux"
 
 # quick zsh mods
 alias rrc='source ~/.zshrc'

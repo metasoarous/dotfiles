@@ -1,4 +1,3 @@
-
 call pathogen#infect()
 
 let mapleader = ","
@@ -56,7 +55,8 @@ au BufNewFile,BufRead less set filetype=css
 set guioptions-=m "Remove menu bar
 set guioptions-=T "Remove tool bar
 
-"color ir_black
+syntax on
+set t_Co=16
 call togglebg#map("<F5>")
 set background=light
 colorscheme solarized
@@ -76,9 +76,6 @@ command! Plain set spell linebreak wrap tw=1111111
 
 command! Reload source ~/.vimrc
 command! Erc split ~/.vimrc
-
-" Hmmm... This doesn't seem to work. Fails to distiguish captial
-nnoremap <C-X> <C-a>
 
 set noea
 
@@ -110,7 +107,6 @@ endif
 "" ===================================================
 ""
 
-syntax on
 filetype plugin indent on
 
 set number " Show line numbers
