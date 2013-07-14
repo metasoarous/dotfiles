@@ -57,8 +57,7 @@ set guioptions-=T "Remove tool bar
 
 syntax on
 set t_Co=16
-call togglebg#map("<F5>")
-set background=light
+call togglebg#map("<F4>")
 colorscheme solarized
 
 
