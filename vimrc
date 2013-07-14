@@ -101,6 +101,11 @@ if has("gui_running")
   set lines=70 columns=110 
 endif
 
+" Sunset settings - for automatically changing background based on sunlight
+let g:sunset_latitude = 47.61
+let g:sunset_longitude = 122.33
+let g:sunset_utc_offset = -7
+
 
 
 "" The below was all snagged from janus. Moving away..
