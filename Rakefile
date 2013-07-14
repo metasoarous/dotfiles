@@ -1,11 +1,16 @@
 require 'rake'
 require 'erb'
+require 'pry'
 
 
 desc "install the dot files into user's home directory - use replace_all=true to replace all files"
 task :install do
   install_oh_my_zsh
   switch_to_zsh
+  install_pathogen
+  pathogen_plugins do |plugin|
+    install_pathogen_plugin plugin
+  end
   replace_all = ENV['replace_all'] == 'true'
   dotfiles.each do |file|
     system %Q{mkdir -p "$HOME/.#{File.dirname(file)}"} if file =~ /\//
@@ -61,7 +66,7 @@ def dotted_filename(undotted_name, pp=false)
 end
 
 def dotfiles
-  files = Dir['*'] - %w[Rakefile README.md LICENSE oh-my-zsh backups bin]
+  files = Dir['*'] - %w[Rakefile README.md LICENSE oh-my-zsh backups bin pathogen_plugins]
   files += Dir['bin/*']
   files << "oh-my-zsh/custom/plugins/rbates"
   files << "oh-my-zsh/custom/rbates.zsh-theme"
@@ -82,6 +87,33 @@ def link_file(file)
   else
     puts "linking ~/.#{file}"
     system %Q{ln -s "$PWD/#{file}" "#{dotted_filename(file)}"}
+  end
+end
+
+def install_pathogen
+  if File.exist?(File.join(ENV['HOME'], '.vim/bundle'))
+    puts "Already using pathogen"
+  else
+    puts "Installing pathogen"
+    system %Q{mkdir -p ~/.vim ~/.vim/tmp ~/.vim/autoload ~/.vim/bundle}
+    system %Q{curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim}
+  end
+end
+
+def install_pathogen_plugin repo
+  name = repo.split('/')[1]
+  path = File.join(ENV['HOME'], '.vim/bundle', name)
+  if File.exist?(File.join(ENV['HOME'], '.vim/bundle', name))
+    puts "    Already using #{name}"
+  else
+    puts "Installing pathogen plugin #{name}"
+    system %Q{git clone git://github.com/#{repo}.git "$HOME/.vim/bundle/#{name}"}
+  end
+end
+
+def pathogen_plugins
+  File.open('pathogen_plugins').each_line do |line|
+    yield line.chomp
   end
 end
 
