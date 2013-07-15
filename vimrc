@@ -97,7 +97,7 @@ let g:pandoc_no_folding = 1
 
 
 if has("gui_running")
-  set lines=70 columns=110 
+  set lines=70 columns=118
 endif
 
 " Sunset settings - for automatically changing background based on sunlight
