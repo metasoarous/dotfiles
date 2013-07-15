@@ -11,16 +11,11 @@ sophacles/vim-processing
 ervandew/supertab
 tpope/vim-fugitive
 tpope/vim-git
-tpope/vim-surround
-tpope/vim-vividchalk
 mileszs/ack.vim
-msanders/snipmate.vim
-tpope/vim-unimpaired
 mattn/webapi-vim
 wgibbs/vim-irblack
 tpope/vim-endwise
 scrooloose/syntastic
-vim-scripts/taglist.vim
 Rip-Rip/clang_complete
 kien/ctrlp.vim
-garbas/vim-snipmate
+Floobits/floobits-vim
