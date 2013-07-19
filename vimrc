@@ -11,6 +11,7 @@ map <leader>p "+p
 map <leader>Y "+yy
 map <leader>m :Mail<enter>
 map <leader>M :Mail<enter>
+map <leader>r :res 
 
 map <C-s> :w<enter>
 " Shouldn't need this one, but just in case I haven't yet
@@ -103,7 +104,8 @@ endif
 " Sunset settings - for automatically changing background based on sunlight
 let g:sunset_latitude = 47.61
 let g:sunset_longitude = 122.33
-let g:sunset_utc_offset = -7
+let g:sunset_utc_offset = 17
+let g:loaded_sunset = 0
 
 
 
