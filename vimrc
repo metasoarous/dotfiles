@@ -12,6 +12,7 @@ map <leader>Y "+yy
 map <leader>m :Mail<enter>
 map <leader>M :Mail<enter>
 map <leader>r :res 
+map <leader>/ /asdf<enter>
 
 map <C-s> :w<enter>
 " Shouldn't need this one, but just in case I haven't yet
