@@ -90,8 +90,9 @@ set textwidth=110
 
 " NERDTree setup
 map <leader>t :NERDTreeToggle <CR>
-autocmd vimenter * if !argc() | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" Was liking having drawer open up automatically, bit it's actually kind of annoying... Might modify later
+"autocmd vimenter * if !argc() | NERDTree | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let NERDTreeIgnore = ['\.pyc$', '\.RData$']
 
 " Disables pandoc folding - kinda neet though. Might be cool to activate this later
