@@ -63,10 +63,13 @@ stty -ixon
 # Listing aliases
 alias ll='ls -hl'
 alias la='ls -hla'
+alias lat='ls -hlat'
 alias wdid='ls -chlt | head'
 alias l='ls -hl'
+alias lt='ls -hlt'
 alias files='nautilus'
 alias tmux="TERM=screen-256color-bce tmux -2"
+alias duh='du -hs'
 
 # quick zsh mods
 alias rrc='source ~/.zshrc'
