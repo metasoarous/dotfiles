@@ -2,7 +2,7 @@
 	name = <%= print("Your Name: "); STDOUT.flush; STDIN.gets.chomp %>
 	email = <%= print("Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
 [color]
-	diff = auto
+	diff = always
 	status = auto
   branch = auto
   ui = auto
@@ -22,7 +22,6 @@
 [github]
 	user = <%= print("GitHub Username: "); STDOUT.flush; STDIN.gets.chomp %>
 [alias]
-  cdiff = diff --color=always
   ca = commit -a
   cav = commit -av
   st = status
