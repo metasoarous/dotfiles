@@ -225,6 +225,14 @@ hdoze () {
 [[ -s $HOME/.zshrc.local.after ]] && source $HOME/.zshrc.local.after
 
 
+# Stuff for virtual env to be prettier
+#export VIRTUAL_ENV_DISABLE_PROMPT=1
+#function virtualenv_info() {
+  #if [ ! -z "$VIRTUAL_ENV" ]; then
+    #echo "(${VIRTUAL_ENV:t}) "
+  #fi
+#}
+#PROMPT="$PROMPT$(virtualenv_info)"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
