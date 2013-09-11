@@ -21,7 +21,7 @@ plugins=()
 autojump=/usr/share/autojump/autojump.zsh
 
 # Main path list. Can be added to with ~/.zshrc.local
-export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin
+export PATH=$HOME/local/bin:$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin
 
 
 # Local early bird overrides, modifications
@@ -70,6 +70,7 @@ alias lt='ls -hlt'
 alias files='nautilus'
 alias tmux="TERM=screen-256color-bce tmux -2"
 alias duh='du -hs'
+alias less='TERM=xterm less -R'
 
 # quick zsh mods
 alias rrc='source ~/.zshrc'
