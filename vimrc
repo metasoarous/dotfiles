@@ -171,6 +171,8 @@ if has("autocmd")
   au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
 " Treat JSON files like JavaScript
   au BufNewFile,BufRead *.json set ft=javascript
+" Treat todo files like markdown
+  au BufNewFile,BufRead *.todo set ft=markdown
 " make Python follow PEP8 for whitespace ( http://www.python.org/dev/peps/pep-0008/ )
   au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
 " Remember last location in file, but not for commit messages.
