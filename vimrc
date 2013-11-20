@@ -104,11 +104,9 @@ if has("gui_running")
 endif
 
 " Sunset settings - for automatically changing background based on sunlight
-let g:sunset_latitude = 47.61
-let g:sunset_longitude = 122.33
-let g:sunset_utc_offset = 17
-let g:loaded_sunset = 0
-
+let g:sunset_latitude = 47.6097
+let g:sunset_longitude = -122.3331
+let g:sunset_utc_offset = -8
 
 
 "" The below was all snagged from janus. Moving away..

@@ -215,9 +215,9 @@ hdoze () {
   else
     # Default window height is...
     height=`xdpyinfo | grep dimensions | sed "s/.*[0-9]*x\([0-9]*\) pixels.*/\1/"`
-    ((height=$height - 60))
+    ((height=$height - 120))
   fi
-  rdesktop -u csmall -d FHCRC phs-terminal.fhcrc.org -K -T "For evil deeds..." -g 1450x$height &
+  rdesktop -u fhcrc\\csmall -d FHCRC cbio-csmall.fhcrc.org -K -T "SHitB@rF" -g 1450x$height &
 }
 
 
