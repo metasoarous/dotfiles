@@ -82,7 +82,9 @@ alias xc='xclip -selection clip'
 alias sc='scons --debug explain'
 alias scn='scons -n --debug explain'
 alias evrc='vim ~/.vimrc'
-alias si='seqmagick info'
+alias seqinfo='seqmagick info'
+alias seqids='seqmagick extract-ids'
+alias ccat='source-highlight -fesc -o STDOUT'
 
 
 # Archeopterix helper
