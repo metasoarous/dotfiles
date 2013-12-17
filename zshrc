@@ -238,6 +238,7 @@ hdoze () {
 #PROMPT="$PROMPT$(virtualenv_info)"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$VIRTUAL_ENV/bin:$PATH
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
