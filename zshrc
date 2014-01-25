@@ -21,7 +21,7 @@ plugins=()
 autojump=/usr/share/autojump/autojump.zsh
 
 # Main path list. Can be added to with ~/.zshrc.local
-export PATH=$HOME/local/bin:$HOME/bin:$HOME/Dropbox/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:app/bin
+export PATH=$HOME/local/bin:$HOME/bin:$HOME/Dropbox/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:/app/bin
 
 
 # Local early bird overrides, modifications
@@ -54,8 +54,9 @@ bindkey "${terminfo[kcud1]}" down-line-or-search
 # This is disables the Ctrl-S Xoff feature of the shell
 stty -ixon
 
-
-
+# Trying to increase the number of history items
+HISTSIZE=100000
+SAVEHIST=100000
 
 # ALIASES!!!!!!!!!!
 # =================
