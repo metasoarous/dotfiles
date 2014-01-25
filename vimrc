@@ -3,7 +3,7 @@ call pathogen#infect()
 let mapleader = ","
 let maplocalleader = "\\"
 
-set backupdir=~/.vim.bkp
+"set backupdir=~/.vim.bkp
 
 
 " Awesome rad maps...

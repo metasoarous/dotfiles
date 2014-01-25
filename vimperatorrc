@@ -20,7 +20,7 @@ set guioptions=br
 set hlsearch
 
 " pass all keys for gmail <modifications>
-autocmd LocationChange .* js modes.passAllKeys = /(www\.rememberthemilk\.com|mail\.google\.com|www\.google\.com\/reader)/.test(buffer.URL)
+autocmd LocationChange .* js modes.passAllKeys = /(www\.drive\.google\.com\/keep|www\.rememberthemilk\.com|mail\.google\.com|www\.google\.com\/reader)/.test(buffer.URL)
 autocmd LocationChange mail\\.google\\.com :set editor="gvim -f -c 'set ft=mail'"
 
 " these are for app tabs http://support.mozilla.com/en-US/kb/what-are-app-tabs

@@ -58,6 +58,13 @@ stty -ixon
 HISTSIZE=100000
 SAVEHIST=100000
 
+# A few settings for my cheat sheets 
+export EDITOR=/usr/bin/vim
+export CHEATCOLORS=true
+
+
+
+
 # ALIASES!!!!!!!!!!
 # =================
 
