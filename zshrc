@@ -54,6 +54,10 @@ bindkey "${terminfo[kcud1]}" down-line-or-search
 # This is disables the Ctrl-S Xoff feature of the shell
 stty -ixon
 
+# A few settings for my cheat sheets 
+export EDITOR=/usr/bin/vim
+export CHEATCOLORS=true
+
 
 
 
