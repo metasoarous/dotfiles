@@ -1,0 +1,16 @@
+
+# Leiningen!
+
+Basically the way to use clojure...
+
+## Git deps
+    
+    (defproject blah "0.0.1"
+      :source-paths ["src/"
+        ".lein-git-deps/<lib-name>/src/"]
+      :git-dependencies [["<giturl>" ?"branch"]]
+      :plugins [[lein-git-deps "0.0.1-SNAPSHOT"]]
+      ...)
+
+Then run `lein git-deps` to load the deps. Done
+
