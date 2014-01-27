@@ -171,7 +171,7 @@ htail () {
 }
 
 avless () {
-  av -L 10000 -w 10000 -cx $@ | less -S
+  av -L 99999 -w 99999 -cx $@ | less -S
 }
 
 alias avlook='av -L 10000 -w 10000 -cx'
