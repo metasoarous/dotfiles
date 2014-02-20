@@ -48,11 +48,12 @@ nmap <A-4> g$
 nmap <A-6> g^
 nmap <A-0> g^
 
-"au BufNewFile,BufRead SCons* set filetype=scons
+
+" Set sconsstruct files to python filetype, and set up a few special functions for syntax highlighting
 au BufNewFile,BufRead SCons* set filetype=python
-" the scons type is supposed to inherit from the python type, but there are a
-" bunch of things that don't seem to inherit properly, so for now, should just
-" use the python type until this is fixed.
+syn keyword sconsEnv Command, Alias, Variables, SlurmEnvironment, PathVariable
+hi link sconsEnv Function
+
 
 au BufNewFile,BufRead less set filetype=css
 
