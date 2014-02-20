@@ -62,7 +62,8 @@ SAVEHIST=100000
 export EDITOR=/usr/bin/vim
 export CHEATCOLORS=true
 
-
+# alias git to hub
+eval "$(hub alias -s)"
 
 
 # ALIASES!!!!!!!!!!
