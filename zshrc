@@ -95,6 +95,12 @@ alias seqids='seqmagick extract-ids'
 alias ccat='source-highlight -fesc -o STDOUT'
 
 
+# run batches of jobs with salloc
+sca() {
+  salloc -n $1 scons --debug explain -j $@
+}
+
+
 # Archeopterix helper
 aptx() {
   java -jar ~/bin/forester.jar -c ~/.aptxrc $1
