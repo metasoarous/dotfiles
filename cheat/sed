@@ -1,0 +1,28 @@
+
+# Flags
+
+  -i   edit file in place
+  -r   use extended regexps
+
+
+# To replace all occurrences of "day" with "night"
+sed 's/day/night/g'
+
+# Restrict replace to lines 3-6
+sed '3,6 s/bat/monkey/g'
+
+# Remove instances of a particular match
+sed '/pattern/d'
+
+# Delete lines 3-6
+sed '3,6d'
+
+# Remove last line
+sed '$d'
+
+# Remove leading spaces
+sed -r 's/^\s+//g'
+
+# Remove empty lines
+sed '/^$/d'
+
