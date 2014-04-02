@@ -48,8 +48,8 @@ which colordiff > /dev/null && alias diff="colordiff"
 # These are from http://www.f30.me/2012/10/oh-my-zsh-key-bindings-on-ubuntu-12-10/
 # Solves no up-line-or-search functionality from oh-my-zsh. Try removing periodically. Appears to be a cleaner
 # patch which may be going to omzsh - XXX
-bindkey "${terminfo[kcuu1]}" up-line-or-search
-bindkey "${terminfo[kcud1]}" down-line-or-search
+#bindkey "${terminfo[kcuu1]}" up-line-or-search
+#bindkey "${terminfo[kcud1]}" down-line-or-search
 
 # This is disables the Ctrl-S Xoff feature of the shell
 stty -ixon
@@ -157,6 +157,10 @@ csvtail () {
   htail $@ | csvlook
 }
 
+addcol () {
+  csvstack -n $2 -g $3,nul $1 /dev/null
+}
+
 # Similarly, for json
 alias jsonlook='python -mjson.tool'
 jsonless () {
@@ -177,8 +181,11 @@ htail () {
   tail -n $n $1
 }
 
-avless () {
+avxless () {
   av -L 99999 -w 99999 -cx $@ | less -S
+}
+avless () {
+  av -L 99999 -w 99999 -c $@ | less -S
 }
 
 alias avlook='av -L 10000 -w 10000 -cx'
