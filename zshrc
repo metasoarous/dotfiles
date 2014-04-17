@@ -21,11 +21,12 @@ plugins=()
 autojump=/usr/share/autojump/autojump.zsh
 
 # Main path list. Can be added to with ~/.zshrc.local
-export PATH=$HOME/local/bin:$HOME/bin:$HOME/Dropbox/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:/app/bin
-
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:/app/bin
 
 # Local early bird overrides, modifications
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+
+export PATH=$HOME/local/bin:$HOME/bin:$HOME/Dropbox/bin:$PATH
 
 # Load oh my zsh
 source $ZSH/oh-my-zsh.sh
@@ -91,6 +92,10 @@ alias xc='xclip -selection clip'
 alias sc='scons --debug explain'
 alias scn='scons -n --debug explain'
 alias evrc='vim ~/.vimrc'
+alias sm='seqmagick'
+alias smi='seqmagick info'
+alias smc='seqmagick convert'
+alias seqconv='seqmagick convert'
 alias seqinfo='seqmagick info'
 alias seqids='seqmagick extract-ids'
 alias ccat='source-highlight -fesc -o STDOUT'
