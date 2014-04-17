@@ -7,7 +7,6 @@ let maplocalleader = "\\"
 
 
 " Awesome rad maps...
-
 map <leader>P :Plain<enter>
 map <leader>p "+p
 map <leader>Y "+yy
@@ -59,6 +58,7 @@ au BufNewFile,BufRead less set filetype=css
 
 set guioptions-=m "Remove menu bar
 set guioptions-=T "Remove tool bar
+set guifont=Monospace\ 8
 
 syntax on
 set t_Co=16
