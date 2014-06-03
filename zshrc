@@ -64,7 +64,7 @@ export EDITOR=/usr/bin/vim
 export CHEATCOLORS=true
 
 # alias git to hub
-eval "$(hub alias -s)"
+#eval "$(hub alias -s)"
 
 
 # ALIASES!!!!!!!!!!
