@@ -69,6 +69,17 @@ colorscheme solarized
 let vimrplugin_screenplugin = 0
 let vimrplugin_underscore = 0
 
+" Make supertab ignore usage on fresh lines
+function! CleverTab()
+   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+      return "\<Tab>"
+   else
+      return "\<C-N>"
+   endif
+endfunction
+inoremap <Tab> <C-R>=CleverTab()<CR>
+
+
 " Because it's annoying when shifting for ':' lingers for w or q and you think
 " you've saved but haven't....
 command! W w
