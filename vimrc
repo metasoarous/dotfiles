@@ -32,6 +32,11 @@ endfunction
 vmap <leader>ds :call DontStage()<enter>
 
 
+" Clojure fireplace etc goodies
+vmap e :Eval<enter>
+map E Ve
+map <leader>e :%Eval<enter>
+
 
 " I'm going to use these Alt-binding now for moving through text more easily
 " when I'm wrapping, but these (for now, unless I figure something clever out)
