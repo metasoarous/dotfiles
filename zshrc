@@ -89,6 +89,7 @@ alias erc='vim ~/.zshrc'
 # Other
 alias ack='ack-grep'
 alias xc='xclip -selection clip'
+alias xp='xclip -selection clip -o'
 alias sc='scons --debug explain'
 alias scn='scons -n --debug explain'
 alias evrc='vim ~/.vimrc'
@@ -99,6 +100,8 @@ alias seqconv='seqmagick convert'
 alias seqinfo='seqmagick info'
 alias seqids='seqmagick extract-ids'
 alias ccat='source-highlight -fesc -o STDOUT'
+
+LEIN_JAVA_CMD=/usr/local/bin/drip
 
 
 # run batches of jobs with salloc
