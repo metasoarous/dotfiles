@@ -37,6 +37,9 @@ vmap e :Eval<enter>
 map E Ve
 map <leader>e :%Eval<enter>
 
+" Some goodies Andrew shared for cursorlines
+map <leader>h :set cursorline! cursorcolumn!<CR>
+
 
 " I'm going to use these Alt-binding now for moving through text more easily
 " when I'm wrapping, but these (for now, unless I figure something clever out)
