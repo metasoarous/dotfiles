@@ -1,0 +1,61 @@
+
+# Vmail cheats!!!!
+##################
+
+
+In the below <ll> corresponds to local leader. By default, this is ",", but I like that for my main leader, so
+I've set this to "\". This can be done with
+
+    :set maplocalleader = "\\"
+
+## misc notes
+
+If saving a draft locally, make sure to save as *.txt; apparently, vmail needs this to know to reload...
+
+
+
+## Basic Commands
+
+l              Look at message; Keep cursor in inbox
+<ll>*          Star message (fancy that)
+<ll>#          Delete message
+<ll>e          Archive message
+U              Mark as unread
+I              Mark as read
+,u             Check for new messages
+
+
+,c             Compose new
+,r             Reply
+,a             Reply to all
+,f             Forward
+,vs            Send message
+,q             Quite composition
+
+
+
+# Attachments
+
+,A             Download attachments to local directory
+:VMAttach [f]  Attach files
+
+
+## Searches/Matches
+
+,s             Search query
+C-p, C-n       Move up and down in match list
+C-e            Closes the match list and lets you continue typing
+C-u            When actives, cucles forward thourgh list; when inactive, erases
+C-y            Selects highlighed match without triggering enter
+
+
+## Rarely used
+
+<ll>!          Mark as spam
+,B             Copy to another mailbox
+,b             Move message to another mailbox
+,vp            Print messages to file
+C-l            Force screen redraw
+,?             will open up the Vmail help file in browser
+,qq            quite all
+
