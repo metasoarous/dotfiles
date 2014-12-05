@@ -39,6 +39,8 @@ map <leader>e :%Eval<enter>
 
 " Some goodies Andrew shared for cursorlines
 map <leader>h :set cursorline! cursorcolumn!<CR>
+" By default on...
+:set cursorline! cursorcolumn!
 
 
 " I'm going to use these Alt-binding now for moving through text more easily
