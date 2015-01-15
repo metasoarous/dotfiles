@@ -7,7 +7,6 @@ let maplocalleader = "\\"
 
 
 " Awesome rad maps...
-
 map <leader>P :Plain<enter>
 map <leader>p "+p
 map <leader>Y "+yy
@@ -32,6 +31,16 @@ function! DontStage() range
 endfunction
 vmap <leader>ds :call DontStage()<enter>
 
+
+" Clojure fireplace etc goodies
+vmap e :Eval<enter>
+map E Ve
+map <leader>e :%Eval<enter>
+
+" Some goodies Andrew shared for cursorlines
+map <leader>h :set cursorline! cursorcolumn!<CR>
+" By default on...
+:set cursorline! cursorcolumn!
 
 
 " I'm going to use these Alt-binding now for moving through text more easily
@@ -59,6 +68,7 @@ au BufNewFile,BufRead less set filetype=css
 
 set guioptions-=m "Remove menu bar
 set guioptions-=T "Remove tool bar
+set guifont=Monospace\ 8
 
 syntax on
 set t_Co=16
@@ -68,6 +78,17 @@ colorscheme solarized
 
 let vimrplugin_screenplugin = 0
 let vimrplugin_underscore = 0
+
+" Make supertab ignore usage on fresh lines
+function! CleverTab()
+   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+      return "\<Tab>"
+   else
+      return "\<C-N>"
+   endif
+endfunction
+inoremap <Tab> <C-R>=CleverTab()<CR>
+
 
 " Because it's annoying when shifting for ':' lingers for w or q and you think
 " you've saved but haven't....
@@ -165,19 +186,24 @@ endfunction
 
 filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
 
+
 if has("autocmd")
-" In Makefiles, use real tabs, not tabs expanded to spaces
+  " In Makefiles, use real tabs, not tabs expanded to spaces
   au FileType make setlocal noexpandtab
-" Make sure all mardown files have the correct filetype set and setup wrapping
+  " Make sure all mardown files have the correct filetype set and setup wrapping
   au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
-" Treat JSON files like JavaScript
+  " Make handlebars look ok
+  au BufRead,BufNewFile *.{handlebars,hbs} setf html
+  " Treat JSON files like JavaScript
   au BufNewFile,BufRead *.json set ft=javascript
-" Treat todo files like markdown
+  " Treat todo files like markdown
   au BufNewFile,BufRead *.todo set ft=markdown
-" make Python follow PEP8 for whitespace ( http://www.python.org/dev/peps/pep-0008/ )
+  " make Python follow PEP8 for whitespace ( http://www.python.org/dev/peps/pep-0008/ )
   au FileType python setlocal softtabstop=4 tabstop=4 shiftwidth=4
-" Remember last location in file, but not for commit messages.
-" see :help last-position-jump
+  " and for js
+  au FileType javascript setlocal softtabstop=2 tabstop=2 shiftwidth=2
+  " Remember last location in file, but not for commit messages.
+  " see :help last-position-jump
   au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
         \| exe "normal! g`\"" | endif
   " XXX - Custom...
