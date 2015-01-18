@@ -21,6 +21,8 @@ plugins=()
 autojump=/usr/share/autojump/autojump.zsh
 
 # Main path list. Can be added to with ~/.zshrc.local
+#export PATH=/usr/local/bin:/app/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin
+export R_LIBS_SITE=~matsengrp/local/R-packages
 export PATH=/usr/local/bin:$HOME/.linuxbrew/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:/app/bin
 
 # Local early bird overrides, modifications
@@ -81,6 +83,7 @@ alias files='nautilus'
 alias tmux="TERM=screen-256color-bce tmux -2"
 alias duh='du -hs'
 alias less='TERM=xterm less -R'
+alias svim='/usr/bin/vim' # since matsengrp vim doesn't seem to work on 1404
 
 # quick zsh mods
 alias rrc='source ~/.zshrc'
@@ -196,6 +199,7 @@ avless () {
   av -L 99999 -w 99999 -c $@ | less -S
 }
 
+alias avlook='av -L 10000 -w 10000 -c'
 alias avlook='av -L 10000 -w 10000 -cx'
 
 waid () {
@@ -274,5 +278,7 @@ PATH=$VIRTUAL_ENV/bin:$PATH
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # Activate pythedge environment if present
-[[ -s $HOME/pythedge/bin/activate ]] && source $HOME/pythedge/bin/activate
+[[ -s $HOME/pythedge-clstr/bin/activate ]] && source $HOME/pythedge-clstr/bin/activate
+
+alias vim=svim
 
