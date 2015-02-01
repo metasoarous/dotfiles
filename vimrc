@@ -22,6 +22,8 @@ map <C-S> :w<enter>
 " yank to X clipboard
 vmap <leader>y "+y
 
+" Remove tailing white spaces
+nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " don't stage - git helper for removing things from staging on add -e
 "vmap <leader>ds <line1>,<line2>call DontStage()<enter>
