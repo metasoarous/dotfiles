@@ -22,7 +22,7 @@ autojump=/usr/share/autojump/autojump.zsh
 
 # Main path list. Can be added to with ~/.zshrc.local
 #export PATH=/usr/local/bin:/app/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin
-export R_LIBS_SITE=~matsengrp/local/R-packages
+#export R_LIBS_SITE=~matsengrp/local/R-packages
 export PATH=/usr/local/bin:$HOME/.linuxbrew/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:/app/bin
 
 # Local early bird overrides, modifications
