@@ -22,7 +22,8 @@ autojump=/usr/share/autojump/autojump.zsh
 
 # Main path list. Can be added to with ~/.zshrc.local
 #export PATH=/usr/local/bin:/app/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin
-export R_LIBS_SITE=~matsengrp/local/R-packages
+
+[[ -s /home/matsengrp ]] && export R_LIBS_SITE=~matsengrp/local/R-packages
 export PATH=/usr/local/bin:$HOME/.linuxbrew/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:/app/bin
 
 # Local early bird overrides, modifications
@@ -103,6 +104,7 @@ alias seqconv='seqmagick convert'
 alias seqinfo='seqmagick info'
 alias seqids='seqmagick extract-ids'
 alias ccat='source-highlight -fesc -o STDOUT'
+alias rtmc='rtm -c'
 
 LEIN_JAVA_CMD=/usr/local/bin/drip
 
