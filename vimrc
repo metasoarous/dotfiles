@@ -36,6 +36,7 @@ Plugin 'Rip-Rip/clang_complete'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'floobits/floobits-neovim'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'tpope/vim-fireplace'
 
 " Plugin 'vim-pandoc/vim-pandoc'
 
