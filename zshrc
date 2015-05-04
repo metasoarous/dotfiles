@@ -24,7 +24,9 @@ autojump=/usr/share/autojump/autojump.zsh
 #export PATH=/usr/local/bin:/app/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin
 
 [[ -s /home/matsengrp ]] && export R_LIBS_SITE=~matsengrp/local/R-packages
-export PATH=/usr/local/bin:$HOME/.linuxbrew/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:/app/bin
+export ENTREZ_EMAIL=csmall@fhcrc.org
+#export PATH=/usr/local/bin:$HOME/.linuxbrew/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:/app/bin
+export PATH=/usr/local/bin:$HOME/.linuxbrew/bin:/app/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:
 
 # Local early bird overrides, modifications
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
