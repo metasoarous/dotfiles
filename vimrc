@@ -113,11 +113,65 @@ set textwidth=110
 
 
 " NERDTree setup
-map <leader>t :NERDTreeToggle <CR>
+map <leader>T :NERDTreeToggle <CR>
+map <leader>t :NERDTreeTabsToggle <CR>
 " Was liking having drawer open up automatically, bit it's actually kind of annoying... Might modify later
 "autocmd vimenter * if !argc() | NERDTree | endif
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let NERDTreeIgnore = ['\.pyc$', '\.RData$']
+
+" Stuff for working with tabs + windows
+function! MoveToPrevTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() != 1
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabprev
+    endif
+    sp
+  else
+    close!
+    exe "0tabnew"
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+
+function! MoveToNextTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() < tab_nr
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabnext
+    endif
+    sp
+  else
+    close!
+    tabnew
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+
+map <C-n> :call MoveToPrevTab()<CR>
+map <C-m> :call MoveToNextTab()<CR>
+map <C-B> :call MoveToPrevTab()<CR>
+map <C-M> :call MoveToNextTab()<CR>
+" Don't know why I have to call this...
+unmap <enter>
+
 
 " Disables pandoc folding - kinda neet though. Might be cool to activate this later
 let g:pandoc_no_folding = 1
