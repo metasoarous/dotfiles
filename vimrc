@@ -37,6 +37,10 @@ vmap e :Eval<enter>
 map E Ve
 map <leader>e :%Eval<enter>
 
+" Something else helpful for clojure (edn really)
+au BufNewFile,BufRead *.edn set filetype=clojure
+
+
 " Some goodies Andrew shared for cursorlines
 map <leader>h :set cursorline! cursorcolumn!<CR>
 " By default on...
