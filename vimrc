@@ -1,10 +1,89 @@
-call pathogen#infect()
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Other vundle plugins
+" Keep Plugin commands between vundle#begin/end.
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-vividchalk'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'ervandew/supertab'
+Plugin 'msanders/snipmate.vim'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'sjl/tslime.vim'
+Plugin 'vim-scripts/pythoncomplete'
+Plugin 'wgibbs/vim-irblack'
+Plugin 'tpope/vim-endwise'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-markdown'
+Plugin 'scrooloose/syntastic'
+Plugin 'Rip-Rip/clang_complete'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'floobits/floobits-neovim'
+Plugin 'jistr/vim-nerdtree-tabs'
+
+" Plugin 'vim-pandoc/vim-pandoc'
+
+" Examples / reference
+" ====================
+" plugin on GitHub repo
+"Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+"Plugin 'L9'
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+"Plugin 'user/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
+
+
+
+" All the custom things
+" =====================
+
+" Replaced by Vundle
+" call pathogen#infect()
 
 let mapleader = ","
 let maplocalleader = "\\"
 
 "set backupdir=~/.vim.bkp
-
 
 " Awesome rad maps...
 map <leader>P :Plain<enter>
