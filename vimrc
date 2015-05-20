@@ -12,7 +12,6 @@ Plugin 'gmarik/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-vividchalk'
 Plugin 'altercation/vim-colors-solarized'
@@ -25,7 +24,6 @@ Plugin 'sjl/tslime.vim'
 Plugin 'vim-scripts/pythoncomplete'
 Plugin 'wgibbs/vim-irblack'
 Plugin 'tpope/vim-endwise'
-Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'garbas/vim-snipmate'
@@ -35,8 +33,21 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Rip-Rip/clang_complete'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'floobits/floobits-neovim'
+Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'sophacles/vim-processing'
+Plugin 'jceb/vim-orgmode'
+Plugin 'sunset'
+
+"" Clojure things
+"Plugin 'vimclojure'
 Plugin 'tpope/vim-fireplace'
+Plugin 'guns/vim-clojure-static'
+Plugin 'guns/vim-clojure-highlight'
+Plugin 'typedclojure/vim-typedclojure'
+Plugin 'tpope/vim-leiningen'
+Plugin 'dgrnbrg/vim-redl'
+
 
 " Plugin 'vim-pandoc/vim-pandoc'
 
@@ -122,6 +133,11 @@ map <leader>e :%Eval<enter>
 " Something else helpful for clojure (edn really)
 au BufNewFile,BufRead *.edn set filetype=clojure
 
+" Other highlighting things
+let g:clojure_align_subforms = 0
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
+let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn,go-loop,go'
+
 
 " Some goodies Andrew shared for cursorlines
 map <leader>h :set cursorline! cursorcolumn!<CR>
@@ -166,15 +182,18 @@ let vimrplugin_screenplugin = 0
 let vimrplugin_underscore = 0
 
 " Make supertab ignore usage on fresh lines
-function! CleverTab()
-   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-      return "\<Tab>"
-   else
-      return "\<C-N>"
-   endif
-endfunction
-inoremap <Tab> <C-R>=CleverTab()<CR>
+"function! CleverTab()
+   "if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+      "return "\<Tab>"
+   "else
+      "return "\<C-N>"
+   "endif
+"endfunction
+"inoremap <Tab> <C-R>=CleverTab()<CR>
 
+" Attempting to get omni complete to run through super tab contextually
+let g:SuperTabDefaultCompletionType = "context"
+"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 " Because it's annoying when shifting for ':' lingers for w or q and you think
 " you've saved but haven't....
@@ -331,7 +350,7 @@ if has("autocmd")
   " In Makefiles, use real tabs, not tabs expanded to spaces
   au FileType make setlocal noexpandtab
   " Make sure all mardown files have the correct filetype set and setup wrapping
-  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
+  au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt,mds} setf markdown
   " Make handlebars look ok
   au BufRead,BufNewFile *.{handlebars,hbs} setf html
   " Treat JSON files like JavaScript
