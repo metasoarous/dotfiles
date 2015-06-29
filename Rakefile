@@ -7,6 +7,7 @@ task :install do
   install_oh_my_zsh
   switch_to_zsh
   install_vundle
+  mkdir_bindir
   replace_all = ENV['replace_all'] == 'true'
   dotfiles.each do |file|
     system %Q{mkdir -p "$HOME/.#{File.dirname(file)}"} if file =~ /\//
@@ -67,6 +68,10 @@ def dotfiles
   files << "oh-my-zsh/custom/plugins/rbates"
   files << "oh-my-zsh/custom/rbates.zsh-theme"
   files
+end
+
+def make_bindir
+  system %Q{mkdir -p ~/bin}
 end
 
 def replace_file(file)
