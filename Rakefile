@@ -7,7 +7,7 @@ task :install do
   install_oh_my_zsh
   switch_to_zsh
   install_vundle
-  mkdir_bindir
+  make_bindir
   replace_all = ENV['replace_all'] == 'true'
   dotfiles.each do |file|
     system %Q{mkdir -p "$HOME/.#{File.dirname(file)}"} if file =~ /\//
