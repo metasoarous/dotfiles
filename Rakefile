@@ -6,10 +6,8 @@ desc "install the dot files into user's home directory - use replace_all=true to
 task :install do
   install_oh_my_zsh
   switch_to_zsh
-  install_pathogen
-  pathogen_plugins do |plugin|
-    install_pathogen_plugin plugin
-  end
+  install_vundle
+  make_bindir
   replace_all = ENV['replace_all'] == 'true'
   dotfiles.each do |file|
     system %Q{mkdir -p "$HOME/.#{File.dirname(file)}"} if file =~ /\//
@@ -72,6 +70,10 @@ def dotfiles
   files
 end
 
+def make_bindir
+  system %Q{mkdir -p ~/bin}
+end
+
 def replace_file(file)
   system %Q{rm -rf "#{dotted_filename(file)}"}
   link_file(file)
@@ -89,30 +91,13 @@ def link_file(file)
   end
 end
 
-def install_pathogen
-  if File.exist?(File.join(ENV['HOME'], '.vim/bundle'))
-    puts "Already using pathogen"
+def install_vundle
+  if File.exist?(File.join(ENV['HOME'], '.vim/bundle/Vundle.vim'))
+    puts "Already using vundle"
   else
-    puts "Installing pathogen"
-    system %Q{mkdir -p ~/.vim ~/.vim/tmp ~/.vim/autoload ~/.vim/bundle}
-    system %Q{curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim}
-  end
-end
-
-def install_pathogen_plugin repo
-  name = repo.split('/')[1]
-  path = File.join(ENV['HOME'], '.vim/bundle', name)
-  if File.exist?(File.join(ENV['HOME'], '.vim/bundle', name))
-    puts "    Already using #{name}"
-  else
-    puts "Installing pathogen plugin #{name}"
-    system %Q{git clone git://github.com/#{repo}.git "$HOME/.vim/bundle/#{name}"}
-  end
-end
-
-def pathogen_plugins
-  File.open('pathogen_plugins').each_line do |line|
-    yield line.chomp
+    puts "Installing Vundle"
+    system %Q{mkdir -p ~/.vim ~/.vim/bundle}
+    system %Q{git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim}
   end
 end
 
