@@ -38,6 +38,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'sophacles/vim-processing'
 Plugin 'jceb/vim-orgmode'
 Plugin 'sunset'
+Plugin 'kburdett/vim-nuuid'
 
 "" Clojure things
 "Plugin 'vimclojure'
@@ -127,6 +128,7 @@ vmap <leader>ds :call DontStage()<enter>
 
 " Clojure fireplace etc goodies
 vmap e :Eval<enter>
+vmap E :Eval!<enter>
 map E Ve
 map <leader>e :%Eval<enter>
 
@@ -290,6 +292,32 @@ endif
 let g:sunset_latitude = 47.6097
 let g:sunset_longitude = -122.3331
 let g:sunset_utc_offset = -8
+
+
+
+"" Generate and insert uuids
+"fu! GenerateUUID()
+ 
+"python << EOF
+"import uuid
+"import vim
+ 
+"# output a uuid to the vim variable for insertion below
+"vim.command("let generatedUUID = \"%s\"" % str(uuid.uuid4()))
+ 
+"EOF
+ 
+"" insert the python generated uuid into the current cursor's position
+":execute "normal i" . generatedUUID . ""
+ 
+"endfunction
+ 
+""initialize the generateUUID function here and map it to a local command
+"map <Leader>U :call GenerateUUID()<CR>
+
+let g:nuuid_no_mappings = 1
+map <Leader>U <Plug>Nuuid
+
 
 
 "" The below was all snagged from janus. Moving away..
