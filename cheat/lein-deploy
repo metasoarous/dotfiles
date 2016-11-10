@@ -1,0 +1,15 @@
+
+There is a lot of unspoken magick around lein releases.
+
+1. Leave project with `-SNAPSHOT` version (if alpha or beta, do `0.0.1-alpha1-SNAPSHOT` (e.g.).
+2. Create an uberjar of the project `lein uberjar`.
+3. Deploy the snapshot:
+    a. Directly as a snapshot: `lein deploy clojars`
+    b. As a release: `lein deploy clojars datsync 0.0.1-alpha1-SNAPSHOT`
+4. Increment version number.
+
+Keep in mind it pays to have clojars credentials set up in `~/.lein/credentials.clj.pgp`, and you'll need pgp
+with a working agent to sign releases as well.
+I had to upgrade from gpg1 to gpg2.
+
+

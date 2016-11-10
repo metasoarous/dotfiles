@@ -1,0 +1,38 @@
+
+## Finding all listening ports
+
+    nmap -sT -O server
+
+server can be either localhost, an ip, etc
+
+
+
+## Find all open ip addresses in a range
+
+It should be possible to do with with
+
+    nmap -sP "192.168.1.*"
+
+But this seems to frequently miss things.
+You can always just use Angry IP scanner.
+This has the added advantage of being multithreaded for very much fastness.
+
+
+# Wireless / wifi
+
+## Show all network devices:
+
+    ifconfig
+
+## Scan for wireless networks
+
+    iwlist wlanX s
+
+## Connect to wpa secured network
+
+    sudo iwconfig wlanX essid NAMEOFNETWORK key PASSWORDOFNETWORK
+
+Note that the key combo is not required if there's no password
+
+
+
