@@ -5,3 +5,7 @@
 .Rhistory
 .RData
 tmp
+.idea/
+posh.iml
+.lein-repl-history
+*.iml

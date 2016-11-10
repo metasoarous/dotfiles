@@ -29,16 +29,22 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-markdown'
+Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'scrooloose/syntastic'
 Plugin 'Rip-Rip/clang_complete'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'floobits/floobits-neovim'
+"Plugin 'floobits/floobits-neovim'
+"Plugin 'Floobits/floobits-vim' "problems?
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'sophacles/vim-processing'
 Plugin 'jceb/vim-orgmode'
 Plugin 'sunset'
 Plugin 'kburdett/vim-nuuid'
+Plugin 'chrisbra/Recover.vim'
+"Plugin 'bnf.vim'
+Plugin 'vim-scripts/bnf.vim'
+Plugin 'tpope/vim-obsession'
 
 "" Clojure things
 "Plugin 'vimclojure'
@@ -48,6 +54,11 @@ Plugin 'guns/vim-clojure-highlight'
 Plugin 'typedclojure/vim-typedclojure'
 Plugin 'tpope/vim-leiningen'
 Plugin 'dgrnbrg/vim-redl'
+Plugin 'bhurlow/vim-parinfer'
+
+Plugin 'SirVer/ultisnips' " Engine
+"Plugin 'honza/vim-snippets' " Snippets
+
 
 
 " Plugin 'vim-pandoc/vim-pandoc'
@@ -107,6 +118,10 @@ map <leader>M :Mail<enter>
 map <leader>r :res 
 map <leader>/ /asdf<enter>
 
+" A couple new suggestions from Erick that made his life better
+map <C-\> :w<enter>
+imap <C-\> <Esc>:w<enter>
+
 map <C-s> :w<enter>
 " Shouldn't need this one, but just in case I haven't yet
 map <C-S> :w<enter>
@@ -140,11 +155,41 @@ let g:clojure_align_subforms = 0
 let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
 let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn,go-loop,go'
 
+" parinfer
+augroup parinfer
+  autocmd!
+  autocmd BufNewFile,BufReadPost *.clj,*.cljs,*.cljc,*.edn call parinfer#start_server()
+  autocmd InsertLeave *.clj,*.cljs,*.cljc,*.edn call parinfer#send_buffer()
+  autocmd VimLeavePre *.clj,*cljs,*.cljc,*.edn call <sid> stop_server()
+  autocmd FileType clojure vnoremap <buffer> <Tab> :call parinfer#do_indent()<cr>
+  autocmd FileType clojure vnoremap <buffer> <S-Tab> :call parinfer#do_undent()<cr>
+  " stil considering these mappings
+  au TextChanged *.clj,*.cljc,*.cljs call parinfer#send_buffer()
+  "au FileType clojure nnoremap <M-Tab> :call <sid>do_undent()<cr>
+  "autocmd FileType clojure nnoremap <buffer> ]] /^(<CR>
+  "autocmd FileType clojure nnoremap <buffer> [[ ?^(<CR>
+augroup END
+
+
+
+" Non clojure things...
+"
+"
+" Vim snippets via ultisnips
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " Some goodies Andrew shared for cursorlines
 map <leader>h :set cursorline! cursorcolumn!<CR>
 " By default on...
 :set cursorline! cursorcolumn!
+
 
 
 " I'm going to use these Alt-binding now for moving through text more easily
@@ -273,16 +318,15 @@ function! MoveToNextTab()
 endfunc
 
 map <C-n> :call MoveToPrevTab()<CR>
-map <C-m> :call MoveToNextTab()<CR>
+"map <C-m> :call MoveToNextTab()<CR>
 map <C-B> :call MoveToPrevTab()<CR>
 map <C-M> :call MoveToNextTab()<CR>
 " Don't know why I have to call this...
 unmap <enter>
 
 
-" Disables pandoc folding - kinda neet though. Might be cool to activate this later
+" 1 Disables pandoc folding - kinda neet though. Might be cool to activate this later
 let g:pandoc_no_folding = 1
-
 
 if has("gui_running")
   set lines=70 columns=118
@@ -328,7 +372,7 @@ filetype plugin indent on
 
 set number " Show line numbers
 set ruler " Show line and column number
-set encoding=utf-8 " Set default encoding to UTF-8
+"set encoding=utf-8 " Set default encoding to UTF-8
 
 set nowrap " don't wrap lines
 set tabstop=2 " a tab is two spaces

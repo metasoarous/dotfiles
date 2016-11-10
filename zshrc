@@ -4,7 +4,17 @@ ZSH=$HOME/.oh-my-zsh
 
 
 # Theme to load - Look in ~/.oh-my-zsh/themes/ or set to "random"
-ZSH_THEME="gnzh"
+#ZSH_THEME="gnzh"
+#ZSH_THEME="agnoster" # Nice boldly-colored line highlighters, but needs special font
+ZSH_THEME="random"
+# awesomepanda - nice and simple; bold so sticks out fairly well, but not as well as agnoster
+# crcandy - very nice; time, bold, git, location, server, user, simple prompt. Like it; could be more boldy
+#ZSH_THEME=crcandy
+#ZSH_THEME=tonotdo
+ZSH_THEME=re5et
+# colored though
+#
+
 
 # Otherwise fucks with tmux window naming
 DISABLE_AUTO_TITLE="true"
@@ -65,7 +75,10 @@ HISTSIZE=100000
 SAVEHIST=100000
 
 # A few settings for my cheat sheets 
-export EDITOR=/usr/bin/vim
+#export EDITOR=/usr/bin/vim
+#export EDITOR=`which nvim`
+export EDITOR='/usr/bin/gvim -v'
+alias vim='gvim -v'
 export CHEATCOLORS=true
 
 # alias git to hub
@@ -284,5 +297,4 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # Activate pythedge environment if present
 [[ -s $HOME/pythedge-clstr/bin/activate ]] && source $HOME/pythedge-clstr/bin/activate
 
-alias vim=svim
 
