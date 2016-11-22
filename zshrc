@@ -1,3 +1,8 @@
+
+# Local early bird overrides, modifications
+[[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+
+
 autoload -U colors && colors
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -37,9 +42,6 @@ autojump=/usr/share/autojump/autojump.zsh
 export ENTREZ_EMAIL=csmall@fhcrc.org
 #export PATH=/usr/local/bin:$HOME/.linuxbrew/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:/app/bin
 export PATH=/usr/local/bin:$HOME/.linuxbrew/bin:/app/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:
-
-# Local early bird overrides, modifications
-[[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
 
 export PATH=$HOME/local/bin:$HOME/bin:$HOME/Dropbox/bin:$PATH
 
@@ -287,9 +289,6 @@ hdoze () {
   #fi
 #}
 #PROMPT="$PROMPT$(virtualenv_info)"
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-PATH=$VIRTUAL_ENV/bin:$PATH
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
