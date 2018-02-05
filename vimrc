@@ -45,6 +45,7 @@ Plugin 'chrisbra/Recover.vim'
 "Plugin 'bnf.vim'
 Plugin 'vim-scripts/bnf.vim'
 Plugin 'tpope/vim-obsession'
+Plugin 'stephpy/vim-yaml'
 
 "" Clojure things
 "Plugin 'vimclojure'
@@ -56,7 +57,8 @@ Plugin 'tpope/vim-leiningen'
 Plugin 'dgrnbrg/vim-redl'
 Plugin 'bhurlow/vim-parinfer'
 
-Plugin 'SirVer/ultisnips' " Engine
+" This seems to be having some crazy fucking issues on stoat... oy vey
+"Plugin 'SirVer/ultisnips' " Engine
 "Plugin 'honza/vim-snippets' " Snippets
 
 
