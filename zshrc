@@ -297,3 +297,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 [[ -s $HOME/pythedge-clstr/bin/activate ]] && source $HOME/pythedge-clstr/bin/activate
 
 
+
+export NVM_DIR="/home/csmall/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
