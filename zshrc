@@ -77,8 +77,6 @@ HISTSIZE=100000
 SAVEHIST=100000
 
 # A few settings for my cheat sheets 
-#export EDITOR=/usr/bin/vim
-#export EDITOR=`which nvim`
 export EDITOR='/usr/bin/gvim -v'
 alias vim='gvim -v'
 export CHEATCOLORS=true
