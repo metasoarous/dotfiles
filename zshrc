@@ -123,6 +123,9 @@ alias seqids='seqmagick extract-ids'
 alias ccat='source-highlight -fesc -o STDOUT'
 alias rtmc='rtm -c'
 
+# removing bad dos carriage returns (mother fuckers)
+alias dos2unix2="tr '\r' '\n' <"
+
 LEIN_JAVA_CMD=/usr/local/bin/drip
 
 
