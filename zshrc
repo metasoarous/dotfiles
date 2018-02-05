@@ -41,7 +41,7 @@ autojump=/usr/share/autojump/autojump.zsh
 [[ -s /home/matsengrp ]] && export R_LIBS_SITE=~matsengrp/local/R-packages
 export ENTREZ_EMAIL=csmall@fhcrc.org
 #export PATH=/usr/local/bin:$HOME/.linuxbrew/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:/app/bin
-export PATH=/usr/local/bin:$HOME/.linuxbrew/bin:/app/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:
+export PATH=/usr/local/bin:$HOME/.linuxbrew/bin:/app/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:$PATH
 
 export PATH=$HOME/local/bin:$HOME/bin:$HOME/Dropbox/bin:$PATH
 
@@ -194,7 +194,7 @@ addcol () {
 # Similarly, for json
 alias jsonlook='python -mjson.tool'
 jsonless () {
-  jsonlook $@ | less
+  jsonlook $@ | less -S
 }
 jsonhead () {
   jsonlook $@ | head
@@ -277,10 +277,6 @@ hdoze () {
 # auto jump !
 [[ -s $autojump ]] && . $autojump && autoload -U compinit && compinit
 
-# If anything needs to be modified for 
-[[ -s $HOME/.zshrc.local.after ]] && source $HOME/.zshrc.local.after
-
-
 # Stuff for virtual env to be prettier
 #export VIRTUAL_ENV_DISABLE_PROMPT=1
 #function virtualenv_info() {
@@ -294,6 +290,9 @@ hdoze () {
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # Activate pythedge environment if present
-[[ -s $HOME/pythedge-clstr/bin/activate ]] && source $HOME/pythedge-clstr/bin/activate
+#[[ -s $HOME/pythedge-clstr/bin/activate ]] && source $HOME/pythedge-clstr/bin/activate
+
+# If anything needs to be modified after everything has run
+[[ -s $HOME/.zshrc.local.after ]] && source $HOME/.zshrc.local.after
 
 
