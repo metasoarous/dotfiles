@@ -290,9 +290,6 @@ hdoze () {
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-# Activate pythedge environment if present
-#[[ -s $HOME/pythedge-clstr/bin/activate ]] && source $HOME/pythedge-clstr/bin/activate
-
 # If anything needs to be modified after everything has run
 [[ -s $HOME/.zshrc.local.after ]] && source $HOME/.zshrc.local.after
 
