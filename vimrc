@@ -21,7 +21,7 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'sjl/tslime.vim'
-Plugin 'vim-scripts/pythoncomplete'
+Plugin 'davidhalter/jedi-vim'
 Plugin 'wgibbs/vim-irblack'
 Plugin 'tpope/vim-endwise'
 Plugin 'vim-scripts/taglist.vim'
@@ -56,6 +56,7 @@ Plugin 'typedclojure/vim-typedclojure'
 Plugin 'tpope/vim-leiningen'
 Plugin 'dgrnbrg/vim-redl'
 Plugin 'bhurlow/vim-parinfer'
+Bundle 'venantius/vim-eastwood'
 
 " This seems to be having some crazy fucking issues on stoat... oy vey
 "Plugin 'SirVer/ultisnips' " Engine
@@ -158,19 +159,20 @@ let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
 let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn,go-loop,go'
 
 " parinfer
-augroup parinfer
-  autocmd!
-  autocmd BufNewFile,BufReadPost *.clj,*.cljs,*.cljc,*.edn call parinfer#start_server()
-  autocmd InsertLeave *.clj,*.cljs,*.cljc,*.edn call parinfer#send_buffer()
-  autocmd VimLeavePre *.clj,*cljs,*.cljc,*.edn call <sid> stop_server()
-  autocmd FileType clojure vnoremap <buffer> <Tab> :call parinfer#do_indent()<cr>
-  autocmd FileType clojure vnoremap <buffer> <S-Tab> :call parinfer#do_undent()<cr>
-  " stil considering these mappings
-  au TextChanged *.clj,*.cljc,*.cljs call parinfer#send_buffer()
-  "au FileType clojure nnoremap <M-Tab> :call <sid>do_undent()<cr>
-  "autocmd FileType clojure nnoremap <buffer> ]] /^(<CR>
-  "autocmd FileType clojure nnoremap <buffer> [[ ?^(<CR>
-augroup END
+" TODO Figure out comments!
+"augroup parinfer
+  "autocmd!
+  "autocmd BufNewFile,BufReadPost *.clj,*.cljs,*.cljc,*.edn call parinfer#start_server()
+  "autocmd InsertLeave *.clj,*.cljs,*.cljc,*.edn call parinfer#send_buffer()
+  "autocmd VimLeavePre *.clj,*cljs,*.cljc,*.edn call <sid> stop_server()
+  "autocmd FileType clojure vnoremap <buffer> <Tab> :call parinfer#do_indent()<cr>
+  "autocmd FileType clojure vnoremap <buffer> <S-Tab> :call parinfer#do_undent()<cr>
+  "" stil considering these mappings
+  "au TextChanged *.clj,*.cljc,*.cljs call parinfer#send_buffer()
+  ""au FileType clojure nnoremap <M-Tab> :call <sid>do_undent()<cr>
+  ""autocmd FileType clojure nnoremap <buffer> ]] /^(<CR>
+  ""autocmd FileType clojure nnoremap <buffer> [[ ?^(<CR>
+"augroup END
 
 
 
@@ -224,7 +226,8 @@ set guifont=Monospace\ 8
 syntax on
 set t_Co=16
 call togglebg#map("<F4>")
-colorscheme solarized
+"colorscheme solarized
+colorscheme elflord
 
 
 let vimrplugin_screenplugin = 0

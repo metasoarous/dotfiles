@@ -296,3 +296,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 [[ -s $HOME/.zshrc.local.after ]] && source $HOME/.zshrc.local.after
 
 
+
+export NVM_DIR="/home/csmall/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

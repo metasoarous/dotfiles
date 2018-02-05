@@ -10,3 +10,4 @@ posh.iml
 .lein-repl-history
 *.iml
 .sconsign.dblite
+.nrepl-port
