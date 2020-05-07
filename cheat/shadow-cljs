@@ -1,0 +1,26 @@
+
+
+# Shadow-CLJS
+
+Mostly straight forward; Example `shadow-cljs.edn`:
+
+    {:dependencies [[blah "x.x.x"]]
+     :builds { }}
+
+
+## vim-fireplace REPL connection...
+
+I can never remember how to do this, so here:
+
+    :Connect <port>
+    :CljEval (shadow/repl :<build-id>)
+
+Not quite fully working, probably cause I don't have cider set up on project in question...
+Also may depend on how project is set up, whether it has clj side or not.
+All from here:
+
+https://shadow-cljs.github.io/docs/UsersGuide.html#_connecting_fireplace_vim_to_repl_server
+
+Also see this:
+
+https://stackoverflow.com/questions/56091218/how-to-do-clojurescript-editor-integration-with-shadow-cljs-and-vim-fireplace

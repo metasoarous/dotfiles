@@ -45,18 +45,21 @@ Plugin 'chrisbra/Recover.vim'
 "Plugin 'bnf.vim'
 Plugin 'vim-scripts/bnf.vim'
 Plugin 'tpope/vim-obsession'
+Plugin 'dhruvasagar/vim-prosession'
 Plugin 'stephpy/vim-yaml'
+Plugin 'jparise/vim-graphql'
 
 "" Clojure things
 "Plugin 'vimclojure'
 Plugin 'tpope/vim-fireplace'
-Plugin 'guns/vim-clojure-static'
+"Plugin 'guns/vim-clojure-static'
 Plugin 'guns/vim-clojure-highlight'
 Plugin 'typedclojure/vim-typedclojure'
 Plugin 'tpope/vim-leiningen'
-Plugin 'dgrnbrg/vim-redl'
+"Plugin 'dgrnbrg/vim-redl'
 Plugin 'bhurlow/vim-parinfer'
-Bundle 'venantius/vim-eastwood'
+
+Plugin 'dense-analysis/ale'
 
 " This seems to be having some crazy fucking issues on stoat... oy vey
 "Plugin 'SirVer/ultisnips' " Engine
@@ -144,11 +147,23 @@ endfunction
 vmap <leader>ds :call DontStage()<enter>
 
 
+
+"" Clojure things!
+"" ===============
+
 " Clojure fireplace etc goodies
 vmap e :Eval<enter>
 vmap E :Eval!<enter>
 map E Ve
 map <leader>e :%Eval<enter>
+map <leader>R :Eval (do (require 'clojure.tools.namespace.repl) (clojure.tools.namespace.repl/refresh))<enter>
+map <C-t> :Eval (do (require 'clojure.test) (clojure.test/run-tests))<enter>
+
+" kondo linter
+let g:ale_linters = {'clojure': ['clj-kondo']}
+
+" don't want clj fmt running automatically
+"let g:clj_fmt_autosave = 0
 
 " Something else helpful for clojure (edn really)
 au BufNewFile,BufRead *.edn set filetype=clojure
@@ -160,23 +175,27 @@ let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,
 
 " parinfer
 " TODO Figure out comments!
-"augroup parinfer
+augroup parinfer
   "autocmd!
   "autocmd BufNewFile,BufReadPost *.clj,*.cljs,*.cljc,*.edn call parinfer#start_server()
   "autocmd InsertLeave *.clj,*.cljs,*.cljc,*.edn call parinfer#send_buffer()
   "autocmd VimLeavePre *.clj,*cljs,*.cljc,*.edn call <sid> stop_server()
-  "autocmd FileType clojure vnoremap <buffer> <Tab> :call parinfer#do_indent()<cr>
-  "autocmd FileType clojure vnoremap <buffer> <S-Tab> :call parinfer#do_undent()<cr>
+  " this is why * wasn't working...
+  autocmd FileType clojure vnoremap <buffer> <Tab> :call parinfer#do_indent()<cr>
+  autocmd FileType clojure vnoremap <buffer> <S-Tab> :call parinfer#do_undent()<cr>
   "" stil considering these mappings
   "au TextChanged *.clj,*.cljc,*.cljs call parinfer#send_buffer()
   ""au FileType clojure nnoremap <M-Tab> :call <sid>do_undent()<cr>
   ""autocmd FileType clojure nnoremap <buffer> ]] /^(<CR>
   ""autocmd FileType clojure nnoremap <buffer> [[ ?^(<CR>
-"augroup END
+augroup END
 
 
 
-" Non clojure things...
+
+
+
+" General editing stuff
 "
 "
 " Vim snippets via ultisnips
@@ -192,7 +211,7 @@ let g:UltiSnipsEditSplit="vertical"
 " Some goodies Andrew shared for cursorlines
 map <leader>h :set cursorline! cursorcolumn!<CR>
 " By default on...
-:set cursorline! cursorcolumn!
+":set cursorline! cursorcolumn!
 
 
 
@@ -244,6 +263,7 @@ let vimrplugin_underscore = 0
 "inoremap <Tab> <C-R>=CleverTab()<CR>
 
 " Attempting to get omni complete to run through super tab contextually
+
 let g:SuperTabDefaultCompletionType = "context"
 "let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
@@ -342,6 +362,8 @@ let g:sunset_latitude = 47.6097
 let g:sunset_longitude = -122.3331
 let g:sunset_utc_offset = -8
 
+"" to avoid annoying end of line edits to files when saving without changes
+:set nofixendofline
 
 
 "" Generate and insert uuids
@@ -423,6 +445,10 @@ endfunction
 filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
 
 
+
+let g:markdown_fenced_languages = ["python", "py=python", "clojure", "clj=clojure", "cljs=clojure", "edn=clojure", "javascript",  "js=javascript", "json=javascript", "ruby", "rb=ruby", "sh", "edn-vega-lite=clojure", "edn-vega=clojure", "edn-oz=clojure", "json-vega-lite=javascript", "json-vega=javascript", "json-oz=javascript", "yaml", "yml=yaml"]
+
+
 if has("autocmd")
   " In Makefiles, use real tabs, not tabs expanded to spaces
   au FileType make setlocal noexpandtab
@@ -470,6 +496,10 @@ nmap <leader>l mQviwu`Q
 nmap <leader>U mQgewvU`Q
 nmap <leader>L mQgewvu`Q
 
+" Insert uuids :-)
+command! UUID exe 'norm i' . system('uuidgen | tr -d \\n')
+nmap <leader>i :UUID<CR>
+
 " Map the arrow keys to be based on display lines, not physical lines
 map <Down> gj
 map <Up> gk
@@ -491,3 +521,5 @@ vmap <C-j> ]egv
 
 " format the entire file - XXX Not sure what this does
 nmap <leader>fef ggVG=
+
+

@@ -1,15 +1,51 @@
 
-There is a lot of unspoken magick around lein releases.
+
+# Snapshot release
 
 1. Leave project with `-SNAPSHOT` version (if alpha or beta, do `0.0.1-alpha1-SNAPSHOT` (e.g.).
+    a. Don't forget to commit!
 2. Create an uberjar of the project `lein uberjar`.
-3. Deploy the snapshot:
-    a. Directly as a snapshot: `lein deploy clojars`
-    b. As a release: `lein deploy clojars datsync 0.0.1-alpha1-SNAPSHOT`
-4. Increment version number.
+3. Deploy the snapshot via `lein deploy clojars`
+
+When you're ready for a full release, follow the same as above, but
+
+1. edit off the snapshot & update CHANGELOG
+2. `git commit -m "release x.x.x"`
+3. tag with version number (`git tag -s x.x.x` or `lein vcs tag`)
+4. `git push origin master && git push origin x.x.x`
+5. `lein uberjar`
+6. `lein deploy clojars`
+
+
+## Credentials
 
 Keep in mind it pays to have clojars credentials set up in `~/.lein/credentials.clj.pgp`, and you'll need pgp
 with a working agent to sign releases as well.
 I had to upgrade from gpg1 to gpg2.
 
+
+## Deploying release versions
+
+You can use `lein release $LEVEL` to do this more efficiently
+
+* leave snapshot on
+* specify for level one of alpha, beta, patch, minor, major for the _next_ version
+* make sure there is a `:deploy-repositories [["releases" :clojars] ["snapshots" :clojars]]` set in `project.clj`
+* make sure everything is committed
+
+## Here are the official lein-release steps
+
+$ lein pprint :release-tasks
+[["vcs" "assert-committed"]
+ ["change" "version" "leiningen.release/bump-version" "release"]
+ ["vcs" "commit"]
+ ["vcs" "tag"]
+ ["deploy"]
+ ["change" "version" "leiningen.release/bump-version"]
+ ["vcs" "commit"]
+ ["vcs" "push"]]
+
+## Detailed docs
+#
+Docs: https://github.com/technomancy/leiningen/blob/master/doc/DEPLOY.md#deployment
 

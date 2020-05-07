@@ -1,0 +1,46 @@
+
+# Postgres!
+
+The database you love to hate!
+
+
+## System quirks
+
+I'm having a bit of a hard time getting postgres to behave.
+Need to pass
+
+  psql -U <username> -W -h localhost <db>
+
+all explicitly for anything to work.
+`-W` and `-h` are supposed to be defaults, but no love here.
+
+
+## Dumping/Restoring
+
+This is a good guide: <https://www.postgresql.org/docs/9.4/backup-dump.html>
+
+  pg_dump dbname > dumpfile
+  psql dbname < dumpfile
+
+You'll probably need the settings above, with `-U postgres` for this to work.
+
+
+## Environment variables
+
+PGHOST
+PGDATABASE
+PGUSER
+PGPASSWORD
+
+
+
+
+
+
+
+
+
+the deets...
+
+
+

@@ -1,0 +1,13 @@
+
+
+# Manually mounting disks and such
+
+Make a dir, find the sd?, then mount
+
+    mkdir ~/mounts/seagate-goflex/
+    sudo fdisk -l
+    sudo mount /dev/sda ~/mounts/seagate-goflex/
+    sudo mount /dev/sda1 ~/mounts/seagate-goflex/
+    files ~/mounts/seagate-goflex/
+
+

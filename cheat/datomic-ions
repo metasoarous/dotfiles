@@ -1,0 +1,47 @@
+
+
+## First, account setup here:
+
+https://docs.datomic.com/cloud/operation/account-setup.html
+
+* subscribe to datomic in markdetplace
+  * accept eula etc
+  * may take 30 min to confirm
+* ec2 key pair
+* verify region
+* raise i3.large instance limit
+
+
+## Create stack
+
+https://docs.datomic.com/cloud/getting-started/start-system.html#prerequisites
+
+* prereqs are as above
+* create a stack
+  * leave application blank to have it named same as stack
+  * don't forget to check both checkboxes at the very end of the review screen before hitting create
+
+
+## Verify system
+
+* refresh cloud watch dsashboards till they appear
+  * shouldn't take longer than 25 min
+  * should be 0 Alerts, > 0 events
+
+
+## Configure access
+
+https://docs.datomic.com/cloud/getting-started/configure-access.html
+
+* allow inbound traffic to access gateway
+  * in ec2 management console (link), edit inbound rules to add type: SSH, source: Anywhere
+* authorize users
+  * add `datomic-admin-*` iam policy to a datomic-dev group
+  * add the dev group to dev user or roles
+
+## Connecting
+
+* install cli tools: https://docs.datomic.com/cloud/operation/cli-tools.html
+* `AWS_PROFILE=<blah> datomic client access <system>`
+* `curl -x socks5h://localhost:8182 http://entry.<system>.<region>.datomic.net:8182/` -> `{:s3-auth-path ...}`
+

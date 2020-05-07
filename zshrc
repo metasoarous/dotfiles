@@ -40,9 +40,10 @@ autojump=/usr/share/autojump/autojump.zsh
 
 [[ -s /home/matsengrp ]] && export R_LIBS_SITE=~matsengrp/local/R-packages
 export ENTREZ_EMAIL=csmall@fhcrc.org
-#export PATH=/usr/local/bin:$HOME/.linuxbrew/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:/app/bin
-export PATH=/usr/local/bin:$HOME/.linuxbrew/bin:/app/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:$PATH
+#export PATH=/usr/local/bin:$HOME/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:/app/bin
+export PATH=/usr/local/bin:$HOME/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/bin:/app/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/sbin:$PATH
 
+export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/local/bin:$HOME/bin:$HOME/Dropbox/bin:$PATH
 
 # Load oh my zsh
@@ -79,6 +80,7 @@ SAVEHIST=100000
 # A few settings for my cheat sheets 
 export EDITOR='/usr/bin/gvim -v'
 alias vim='gvim -v'
+
 export CHEATCOLORS=true
 
 # alias git to hub
@@ -193,7 +195,8 @@ addcol () {
 }
 
 # Similarly, for json
-alias jsonlook='python -mjson.tool'
+# now this one is my own script with width control
+#alias jsonlook='python -mjson.tool'
 jsonless () {
   jsonlook $@ | less -S
 }
@@ -275,6 +278,15 @@ hdoze () {
 }
 
 
+
+# mkcd
+#
+mkcd () {
+  mkdir -p $1
+  cd $1
+}
+
+
 # auto jump !
 [[ -s $autojump ]] && . $autojump && autoload -U compinit && compinit
 
@@ -297,3 +309,24 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 export NVM_DIR="/home/csmall/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export EISH_HOME=${HOME}/code/stedi/eish
+export PATH=$PATH:$EISH_HOME
+export AWS_DEFAULT_REGION=us-east-1
+
+_direnv_hook() {
+  eval "$("/usr/bin/direnv" export zsh)";
+}
+typeset -ag precmd_functions;
+if [[ -z ${precmd_functions[(r)_direnv_hook]} ]]; then
+  precmd_functions+=_direnv_hook;
+fi
+
+
+# Java version management
+
+[ -s "/home/csmall/.jabba/jabba.sh" ] && source "/home/csmall/.jabba/jabba.sh"
+
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+

@@ -1,0 +1,13 @@
+
+# Debugging Xinput
+
+Sometimes xinput stops working.
+You can fix it with
+
+   xinput list
+   # look for Virtual core pointer (id=2 probably)
+   xinput enable 2
+
+
+Et, voila!
+

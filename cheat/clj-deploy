@@ -1,0 +1,140 @@
+
+# Deploying projects with deps.edn (tools-cli)
+
+(From https://oli.me.uk/clojure-projects-from-scratch/)
+
+In this section we’re going to publish a small jar file to Clojars containing only your source code, we’ll be using maven to perform the deploy.
+
+This is intended for libraries that others will depend on and use, you won’t need to worry about this section if you’re building an application you’ll be running.
+
+First, we’re going to add your Clojars login to ~/.m2/settings.xml:
+
+    <settings>
+      <servers>
+        <server>
+          <id>clojars</id>
+          <username>username</username>
+          <password>password</password>
+        </server>
+      </servers>
+    </settings>
+
+Now we’re going to generate your base pom.xml file, you should run this command whenever you’re going to publish so the dependencies get updated:
+
+    $ clj -Spom
+
+Here’s my example version, I’ve annotated each section. There’s some you’ll want to change as well as a couple of parts you’ll want to add and update:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+      <modelVersion>4.0.0</modelVersion>
+
+      <!-- Here by default, but will need updating -->
+      <groupId>org.clojars.olical</groupId>
+      <artifactId>hey</artifactId>
+      <version>2.1.0-SNAPSHOT</version>
+      <name>hey</name>
+
+      <!-- Here by default, updated by `clj -Spom` -->
+      <dependencies>
+        <dependency>
+          <groupId>org.clojure</groupId>
+          <artifactId>clojure</artifactId>
+          <version>1.9.0</version>
+        </dependency>
+      </dependencies>
+      <build>
+        <sourceDirectory>src</sourceDirectory>
+
+        <!-- Essential for bundling your source files into the JAR -->
+        <resources>
+          <resource>
+            <directory>src</directory>
+          </resource>
+        </resources>
+      </build>
+      <repositories>
+        <repository>
+          <id>clojars</id>
+          <url>https://clojars.org/repo</url>
+        </repository>
+      </repositories>
+
+      <!-- Essential for pushing to Clojars -->
+      <distributionManagement>
+        <repository>
+          <id>clojars</id>
+          <name>Clojars repository</name>
+          <url>https://clojars.org/repo</url>
+        </repository>
+      </distributionManagement>
+
+      <!-- Optional extras for Clojars -->
+      <description>Just a Hello, World!</description>
+      <url>https://github.com/Olical/clojure-hey-example</url>
+      <licenses>
+        <license>
+          <name>Unlicense</name>
+          <url>https://unlicense.org/</url>
+        </license>
+      </licenses>
+      <scm>
+        <url>https://github.com/Olical/clojure-hey-example</url>
+      </scm>
+    </project>
+
+We can now tell maven to build and deploy a jar to Clojars:
+
+    $ mvn deploy
+
+A lot of this information comes from Clojar’s guide to pushing and Maven’s guide to deploying 3rd party jars.
+
+If everything went to plan, your Clojars account should now contain a fresh new jar. Note that this is not an uberjar, it only contains your source files and dependency information, not the actual dependencies themselves. The dependencies will be resolved by a tool such as the Clojure CLI.
+
+
+## Ergonomics
+
+As it stands, to deploy our jar to Clojars we’ll want to take the following steps:
+
+Update the version number in our `pom.xml`.
+
+Run the tests with `clj -Atest`.
+
+Run `clj -Spom` to update our pom.xml with any dependency changes.
+
+Run `mvn deploy`.
+
+This isn’t particularly catchy, so we’ll wrap everything we’ve seen so far in a pretty little Makefile:
+
+    .PHONY: run test uberjar deploy
+
+    run:
+      clj -m hey.core
+
+    test:
+      clj -Atest
+
+    uberjar:
+      clj -Auberjar
+
+    deploy: test
+      clj -Spom
+      mvn deploy
+
+Now all you need to do when you wish to deploy is bump the version number in your `pom.xml` and execute make deploy.
+
+
+## See also
+
+https://github.com/juxt/pack.alpha
+
+Builds from `deps.edn`:
+* Lambda
+* Uberjar
+  * Capsule
+  * OneJAR
+  * jdsoft JarClassLoader
+* Skinny JAR
+* Uploading to Clojars (or Maven)
+* Docker image
+
